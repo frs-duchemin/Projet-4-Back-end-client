@@ -1,0 +1,4 @@
+services:
+    tarif.manager:
+        class: AppBundle\Manager\TarifManager
+        arguments: ["@doctrine.orm.entity_manager"]

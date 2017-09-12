@@ -1,0 +1,21 @@
+AppBundle\Entity\Tarif:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\TarifRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        tarifName:
+            type: string
+            length: 255
+        description:
+            type: string
+            length: 255
+        price:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

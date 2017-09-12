@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+  <div class="divider"></div>
+
+  <div class="container" id="section2">
+    <div class = "row">
+        {{ form_start(form) }}
+    <div class="col-sm-6  text-center">
+      <h1>Choix du billet</h1>
+        {{ form_start(form) }}
+        {{ form_row(form.visitDate, {'attr': {'placeholder': 'Date de visite', 'class': 'form-control'},'label_attr': {'class': 'sr-only'} }) }}
+        {{ form_row(form.email,{'attr': {'placeholder': 'Email', 'class': 'form-control'},'label_attr': {'class': 'sr-only'} }) }}
+    </div>
+    <div class="col-sm-6  text-center">
+      <h1>Informations visiteurs</h1>
+
+      <div class="formulaire" data-prototype="{{ form_widget(form.tickets.vars.prototype)|e }}">
+        {{ form_row(form.tickets, {'label_attr': {'class': 'sr-only'}, 'attr': {'class': 'well'}}) }}
+      </div>
+      <button id="add_form" class="btn btn-default">Ajouter un visiteur</button>
+      <input type="submit" class="btn btn-info pull-right" value="Continuer"/>
+        {{ form_end(form) }}
+
+    </div><!--/container-->
+  </div>
+  </div>
+{% endblock %}
+
+{% block javascripts %}
+{{parent()}}
+<script src="{{ asset('build/js/jquery-ui.js') }}"></script>
+<script src="{{ asset('build/js/datepicker-fr.js') }}"></script>
+
+  <script type="text/javascript">
+  $(document).ready(function() {
+    // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
+    var $container = $('div.formulaire');
+    // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
+    var index = $container.find(':input').length;
+    // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
+
+    $('#add_form').click(function(e) {
+
+      addTicket($container);
+
+      e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+      return false;
+    });
+
+    // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
+
+    if (index == 0) {
+      addTicket($container);
+
+    } else {
+
+      // S'il existe déjà des catégories, on ajoute un lien de suppression pour chacune d'entre elles
+
+      $container.children('div').each(function() {
+        addDeleteLink($(this));
+      });
+    }
+
+    // La fonction qui ajoute un formulaire CategoryType
+    function addTicket($container) {
+
+      // Dans le contenu de l'attribut « data-prototype », on remplace :
+      // - le texte "__name__label__" qu'il contient par le label du champ
+      // - le texte "__name__" qu'il contient par le numéro du champ
+      var template = $container.attr('data-prototype')
+        .replace(/__name__label__/g, 'visiteur n°' + (index+1))
+        .replace(/__name__/g,        index)
+      ;
+
+      // On crée un objet jquery qui contient ce template
+      var $prototype = $(template);
+
+      // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
+      addDeleteLink($prototype);
+
+      // On ajoute le prototype modifié à la fin de la balise <div>
+      $container.append($prototype);
+
+      // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
+      index++;
+    }
+
+    // La fonction qui ajoute un lien de suppression d'une catégorie
+    function addDeleteLink($prototype) {
+      // Création du lien
+      var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
+
+      // Ajout du lien
+      $prototype.append($deleteLink);
+
+      // Ajout du listener sur le clic du lien pour effectivement supprimer la catégorie
+      $deleteLink.click(function(e) {
+        $prototype.remove();
+
+        e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+        return false;
+      });
+    }
+  });
+</script>
+
+
+
+  {% endblock %}
