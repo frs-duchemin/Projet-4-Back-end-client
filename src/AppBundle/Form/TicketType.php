@@ -29,22 +29,13 @@ class TicketType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Nom'
                 ],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez saisir votre nom',
-                    ])
-                ]])
+             ])
             ->add('firstname', TextType::class, [
                 'label' => false,
                 'attr' => [
                     'placeholder' => 'Prénom'
                 ],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez saisir votre prénom',
-                    ])
-
-                ]])
+               ])
             ->add('country', CountryType::class, [
                 'label' => false,
                 'preferred_choices' => [
@@ -56,38 +47,32 @@ class TicketType extends AbstractType
                 'required' => false,
                 'mapped' => false,
             ])
-            ->add('birthday', DateType::class, [
+            ->add('birthDate', DateType::class, [
                 'format' => 'dd - MM - yyyy',
                 'widget' => 'choice',
-                'years' => range(date('Y'), date('Y') - 70),
+                'years' => range(date('Y'), date('Y') - 130),
                 'attr' => [
                     'class' => 'dateNaissance',
                     'placeholder' => 'Date de naissance',
                     'readonly' => 'readonly'
 
                 ],
-                'constraints' => [
-                    new DateTime([
-                        'message' => 'Saisissez une date valide sous la forme YYYY-MM-JJ',
-
-                    ]),
-                    new NotBlank([
-                        'message' => 'Saisissez une date valide sous la forme YYYY-MM-JJ',
-                    ])
-                ],
-                'years' => range(date('Y') - 150, date('Y')),
-                'label' => false,
+                               'label' => false,
                 'html5' => false
             ]);
         if (true) {
             $builder
-                ->add('TicketType', ChoiceType::class, [
+                ->add('ticketType', ChoiceType::class, [
                     'label' => false,
                     'placeholder' => 'type de billet',
                     'choices' => [
                         'journée' => 'journee',
                         'demi-journée' => 'demi-journee',
-                    ]
+                    ],
+                'expanded' => true,
+                'multiple' => false,
+                'required' => true,
+
                 ]);
 
         }
@@ -109,7 +94,7 @@ class TicketType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_billet';
+        return 'appbundle_ticket';
     }
 
 

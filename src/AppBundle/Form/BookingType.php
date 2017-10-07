@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -27,19 +28,12 @@ class BookingType extends AbstractType
             'html5' => false,
             'widget' => 'single_text',
             'label' => 'Date de la visite',
-            'format' => 'dd/mm/yy',
-
+            'format' => 'd/M/yyyy',
             'attr' => [
-
-                'readonly' => 'readonly'
             ]
         ])
 
-        ->add('tickets', CollectionType::class, array(
-        'entry_type'   => TicketType::class,
-        'allow_add'    => true,
-        'allow_delete' => true,
-        ))
+
         ->add('email', EmailType::class, [
             'constraints' => [
                 new Email([
@@ -49,7 +43,13 @@ class BookingType extends AbstractType
                 new NotBlank([
                     'message' => 'Saisissez une adresse email',
                 ])
-            ]]);
+            ]])
+            ->add('tickets', CollectionType::class, array(
+                'entry_type'   => TicketType::class,
+                'allow_add'    => true,
+                'allow_delete' => true,
+                'by_reference' => false
+            ));
     }
 
     /**
@@ -67,7 +67,7 @@ class BookingType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_commande';
+        return 'appbundle_booking';
     }
 
 

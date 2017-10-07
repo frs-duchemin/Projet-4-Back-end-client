@@ -1,0 +1,22 @@
+navbar:
+  french: French
+  english: English
+  modal.infos: Praticals informations
+  modal.prices: Prices
+modal:
+  title.infos: Opening days
+  title.prices: Prices
+  opening: The museum is open all days except Tuesday
+  holidays: The museum is closed May the 1st, November 1st, December 25th
+homepage:
+  title: Welcome ! Online booking
+  begin: Begin !
+info:
+  title1: Enter email
+  title2: Choose a booking date
+  title3: Visitors informations
+  continue: Continue
+proto:
+  add: Add a ticket
+  delete: Delete this ticket
+  visitor: Ticket

@@ -10,4 +10,15 @@ namespace AppBundle\Repository;
  */
 class TicketRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getNumberOfTicketsPerDay($visitDate) {
+        $queryBuilder = $this->createQueryBuilder('t')
+            ->select('COUNT(t)')
+            ->join('t.booking', 'b')
+            ->where('b.visitDate = :visitDate')
+            ->setParameter('visitDate', $visitDate)
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        return $queryBuilder;
+    }
 }

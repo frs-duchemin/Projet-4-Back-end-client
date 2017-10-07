@@ -2,3 +2,9 @@ services:
     tarif.manager:
         class: AppBundle\Manager\TarifManager
         arguments: ["@doctrine.orm.entity_manager"]
+
+    validator.constraints.tickets_number:
+        class: AppBundle\Validator\Constraints\TicketsNumberValidator
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: validator.constraint_validator, alias: tickets_number }

@@ -1,6 +1,0 @@
-services:
-    frs_louvre.tarif.manager:
-        class: Frs\LouvreBundle\Manager\TarifManager
-        arguments: ["@doctrine.orm.entity_manager"]
-    tarif.manager:
-        alias: frs_louvre.tarif.manager

@@ -1,0 +1,22 @@
+navbar:
+  french: Français
+  english: Anglais
+  modal.infos: Infos pratiques
+  modal.prices: Tarifs
+modal:
+  title.infos: Jours d'ouverture
+  title.prices: Tarifs
+  opening: Le musée est ouvert tous les jours sauf le Mardi
+  holidays: Le musée est fermé le 1er Mai, 1er Novembre et 25 Décembre
+homepage:
+  title: Bienvenue ! Réservation en ligne
+  begin: Commencez !
+info:
+  title1: Votre email
+  title2: Choisisse une date de réservation
+  title3: Informations sur les visiteurs
+  continue: Continuer
+proto:
+  add: Ajouter un billet
+  delete: Supprimer ce billet
+  visitor: Billet

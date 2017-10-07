@@ -3,112 +3,83 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use AppBundle\Validator\Constraints as LouvreAssert;
 
 /**
  * Ticket
+ *
+ * @ORM\Table(name="ticket")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\TicketRepository")
  */
 class Ticket
 {
+
     /**
      * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=255)
+     * @Assert\Length(min=3, minMessage="Le nom doit faire au moins {{ limit }} caractères.")
+     * @Assert\Length(max=50, maxMessage="Le nom doit faire un maximum de {{ limit }} caractères.")
      */
     private $name;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="firstname", type="string", length=255)
+     * @Assert\Length(min=3, minMessage="Le prénom doit faire au moins {{ limit }} caractères.")
+     * @Assert\Length(max=50, maxMessage="Le prénom doit faire un maximum de {{ limit }} caractères.")
      */
     private $firstname;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="birthDate", type="date")
+     * @Assert\DateTime()
      */
     private $birthDate;
 
     /**
-     * @var string
+     * @var
+     * @ORM\Column(name="country", type="string")
+     * @Assert\Country(message = "Le code pays n'est pas valide.")
      */
     private $country;
 
     /**
-     * @var string
+     * @var
+     * @ORM\Column(name="ticket_type", type="string")
+     * @LouvreAssert\DayTicket
      */
     private $ticketType;
 
     /**
-    * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tarif", inversedBy="tickets")
-    * @ORM\JoinColumn(name="tarif_id", referencedColumnName="id", nullable=false)
-    */
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tarif", inversedBy="tickets")
+     * @ORM\JoinColumn(name="tarif_id", referencedColumnName="id", nullable=false)
+     */
+
     private $tarif;
 
+
     /**
-    * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Booking", inversedBy="tickets")
-    * @ORM\JoinColumn(name="booking_id", referencedColumnName="id", nullable=false)
-    */
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Booking", inversedBy="tickets")
+     * @ORM\JoinColumn(name="booking_id", referencedColumnName="id", nullable=false)
+     */
+
     private $booking;
 
-    /**
-    * Set booking
-    *
-    * @param \AppBundle\Entity\Booking $booking
-    *
-    * @return Ticket
-    */
-    public function setBooking(\Frs\LouvreBundle\Entity\Commande $booking)
-        {
-            $this->booking = $booking;
-            return $this;
-        }
-
-    /**
-    * Get booking
-    *
-    * @return \AppBundle\Entity\Booking
-    */
-    public function getBooking()
-        {
-            return $this->booking;
-        }
-
-    /**
-    * Set tarif
-    *
-    * @param \AppBundle\Entity\Tarif $tarif
-    *
-    * @return Ticket
-    */
-    public function setTarif(\AppBundle\Entity\Tarif $tarif)
-        {
-            $this->tarif = $tarif;
-
-            return $this;
-        }
-
-    /**
-    * Get tarif
-    *
-    * @return \AppBundle\Entity\Tarif
-    */
-        public function getTarif()
-            {
-                return $this->tarif;
-            }
-
-        public function ticketPrice()
-            {
-                if ($this->getTicketType() == 'demi-journee') {
-                    $price = $this->getTarif()->getPrice() / 2;
-                    return $price;
-                    } else {
-                        return $this->getTarif()->getPrice();
-                    }
-            }
 
     /**
      * Get id
@@ -193,28 +164,46 @@ class Ticket
     }
 
     /**
-     * Set country
-     *
-     * @param string $country
-     *
-     * @return Ticket
-     */
-    public function setCountry($country)
-    {
-        $this->country = $country;
-
-        return $this;
-    }
-
-    /**
-     * Get country
-     *
-     * @return string
+     * @return mixed
      */
     public function getCountry()
     {
         return $this->country;
     }
+
+    /**
+     * @param mixed $country
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+    }
+
+
+
+    /**
+     * Set Booking
+     *
+     * @param \AppBundle\Entity\Booking $booking
+     *
+     * @return TIcket
+     */
+    public function setBooking(\AppBundle\Entity\Booking $booking)
+    {
+        $this->booking = $booking;
+        return $this;
+    }
+    /**
+     * Get booking
+     *
+     * @return \AppBundle\Entity\Booking
+     */
+    public function getBooking()
+    {
+        return $this->booking;
+    }
+
+
 
     /**
      * Set ticketType
@@ -239,4 +228,40 @@ class Ticket
     {
         return $this->ticketType;
     }
+
+    /**
+     * Set tarif
+     *
+     * @param \AppBundle\Entity\Tarif $tarif
+     *
+     * @return Ticket
+     */
+    public function setTarif(\AppBundle\Entity\Tarif $tarif)
+    {
+        $this->tarif = $tarif;
+
+        return $this;
+    }
+
+    /**
+     * Get tarif
+     *
+     * @return \AppBundle\Entity\Tarif
+     */
+    public function getTarif()
+    {
+        return $this->tarif;
+    }
+
+    public function ticketPrice()
+{
+    if ($this->getTicketType() == 'demi-journee') {
+        $prix = $this->getTarif()->getPrice() / 2;
+        return $prix;
+    } else {
+        return $this->getTarif()->getPrice();
+    }
+}
+
+
 }

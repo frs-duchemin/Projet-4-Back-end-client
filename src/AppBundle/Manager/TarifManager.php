@@ -38,6 +38,6 @@ class TarifManager
         } else {
             $tarif = 'normal';
         }
-        return $this->em->getRepository('AppBundle:Tarif')->findOneByNomTarif($tarif);
+        return $this->em->getRepository('AppBundle:Tarif')->findOneByTarifName($tarif);
     }
 }

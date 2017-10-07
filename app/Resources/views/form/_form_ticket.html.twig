@@ -1,0 +1,20 @@
+<div class="ticket-fill">
+        <h4><i class="glyphicon glyphicon-user"></i>Billet n°<span class="ticket-nb">1</span> :</h4>
+        <div class="form-group">
+            {{ form_label(ticket.name, 'Nom') }}
+            {{ form_errors(ticket.name) }}
+            {{ form_widget(ticket.name, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(ticket.firstname, 'Prenom') }}
+            {{ form_errors(ticket.firstname) }}
+            {{ form_widget(ticket.firstname, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(ticket.country, 'Pays') }}
+            {{ form_errors(ticket.country) }}
+            {{ form_widget(ticket.country, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+    {# <p>Tarif de ce billet :</p> #}
+</div>
