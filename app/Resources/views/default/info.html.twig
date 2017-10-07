@@ -2,92 +2,24 @@
 
 
 {% block body %}
-
-    <div class="container">
-
-            <div class="row">
-                <div class="col-sm-6 col-md-offset-3">
-                    <h4 style="text-align: center">{{ 'info.title1'|trans }}</h4>
-
-                    {{ form_row(form.email, {'attr': {'placeholder': 'Email', 'class': 'form-control'},'label_attr': {'class': 'sr-only'} }) }}
-                    <h4 style="text-align: center">{{ 'info.title2'|trans }}</h4>
-                    {{ form_start(form) }}
-                    {{ form_errors(form) }}
-                    {{ form_row(form.visitDate, {'attr': {'placeholder': 'Date de visite', 'class': 'form-control'},'label_attr': {'class': 'sr-only'} }) }}
+    <div class="container-fluid" id="information">
+        <div class="row">
+            <div class="col-lg-6 mx-auto text-center">
+                {{ form_start(form) }}
+                <p style="text-align: center">{{ 'info.title1'|trans }}</p>
+                {{ form_row(form.email, {'attr': {'placeholder': 'Email', 'class': 'form-control'},'label_attr': {'class': 'sr-only'} }) }}
+                <p style="text-align: center">{{ 'info.title2'|trans }}</p>
+                {{ form_errors(form) }}
+                {{ form_row(form.visitDate, {'attr': {'placeholder': 'Date de visite', 'class': 'form-control'},'label_attr': {'class': 'sr-only'} }) }}
 
 
-                    <h4 style="text-align: center">{{ 'info.title3'|trans }}</h4>
-                    <ul class="visitors" data-prototype="{{ form_widget(form.tickets.vars.prototype)|e('html_attr') }}"></ul>
-                        {{ form_rest(form) }}
-                    <input type="submit" class="btn btn-info pull-right" value="{{ 'info.continue'|trans }}"/>
-                    {{ form_end(form) }}
-            </div>
+                <p style="text-align: center">{{ 'info.title3'|trans }}</p>
+                <ul class="visitors" data-prototype="{{ form_widget(form.tickets.vars.prototype)|e('html_attr') }}"></ul>
+                {{ form_rest(form) }}
+                <input type="submit" class="btn btn-info pull-right" value="{{ 'info.continue'|trans }}"/>
+                {{ form_end(form) }}
+                                </div>
+                        </div>
     </div>
 {% endblock %}
-        {% block javascripts %}
-            {{ parent() }}
-        <script>// setup an "add a tag" link
-        var $addTagLink = $('<a href="#" class="btn btn-primary">{{ 'proto.add'|trans }}</a>');
-        var $newLinkLi = $('<li class="text-center"></li>').append($addTagLink);
-
-        $(document).ready(function() {
-        // Get the ul that holds the collection of tags
-        var $collectionHolder = $('ul.visitors');
-
-        // add the "add a tag" anchor and li to the tags ul
-        $collectionHolder.append($newLinkLi);
-
-        // count the current form inputs we have (e.g. 2), use that as the new
-        // index when inserting a new item (e.g. 2)
-        $collectionHolder.data('index', $collectionHolder.find('.visitor').length);
-
-        $addTagLink.on('click', function(e) {
-        // prevent the link from creating a "#" on the URL
-        e.preventDefault();
-
-        // add a new tag form (see code block below)
-        addTagForm($collectionHolder, $newLinkLi);
-        });
-
-        $(".form-group:last").addClass("text-center");
-
-        });
-
-        function addTagForm($collectionHolder, $newLinkLi) {
-        // Get the data-prototype explained earlier
-        var prototype = $collectionHolder.data('prototype');
-
-        // get the new index
-        var index = $collectionHolder.data('index');
-        // Replace '$$name$$' in the prototype's HTML to
-        // instead be a number based on how many items we have
-        var newForm = prototype.replace(/__name__/g, index);
-
-        // increase the index with one for the next item
-        $collectionHolder.data('index', index + 1);
-        // Display the form in the page in an li, before the "Add a tag" link li
-        var $newFormLi = $('<li><div class="visitor"><h3 class="text-center">{{ 'proto.visitor'|trans }} ' + (index + 1) + '</h3></div></li>').append(newForm);
-
-        // also add a remove button
-        $newFormLi.append('<a href="#" class="remove-tag btn btn-default btn-sm">{{ 'proto.delete'|trans }}<i class="fa fa-trash" aria-hidden="true"></i></a>');
-
-        $newLinkLi.before($newFormLi);
-
-        $(".checkbox").attr("data-toggle", "tooltip").attr("title", "Sur présentation d'un justificatif.").attr("data-placement", "right").addClass("tooltip-custom");
-
-        // handle the removal;
-        $('.remove-tag').click(function(e) {
-        e.preventDefault();
-        $(this).parent().remove();
-        $collectionHolder.data('index', $collectionHolder.find('.visitor').length);
-        return false;
-        });
-
-        $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-        })
-        }
-        </script>
-
-        {% endblock %}
 

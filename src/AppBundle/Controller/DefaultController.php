@@ -31,25 +31,6 @@ class DefaultController extends Controller
     {
         $locale = $request->getLocale();
         $tarifs = $this->get('tarif.manager')->listTarifs();
-        $content = $this->get('templating')->render('default/homepage.html.twig',
-            [
-                'tarifs' => $tarifs,
-                'locale' => $locale,
-            ]);
-        return new Response($content);
-
-
-    }
-
-    /**
-     *
-     * @Route("/info", name="info")
-     * @Method({"GET", "POST"})
-     *
-     */
-    public function orderAction(Request $request)
-    {
-        $tarifs = $this->get('tarif.manager')->listTarifs();
         $booking = new Booking();
         $form = $this->get('form.factory')->create(BookingType::class, $booking);
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
@@ -71,7 +52,44 @@ class DefaultController extends Controller
             $request->getSession()->getFlashBag()->add('messsage', 'Commande ajoutée');
             return $this->redirectToRoute('recap', array('id' => $booking->getId()));
         }
-        return $this->render('default/info.html.twig', [ 'tarifs' => $tarifs, 'form' => $form->createView(),
+        return $this->render('default/homepage.html.twig', [ 'tarifs' => $tarifs, 'locale' => $locale,'form' => $form->createView(),
+
+        ]);
+
+
+
+    }
+
+    /**
+     *
+     * @Route("/info", name="info")
+     * @Method({"GET", "POST"})
+     *
+     */
+    public function orderAction(Request $request)
+    {
+        $booking = new Booking();
+        $form = $this->get('form.factory')->create(BookingType::class, $booking);
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $booking->setBookingDate(new \DateTime());
+            $random = uniqid(rand(), false);
+            $booking->setCode($random);
+
+            $tarifManager = $this->get('tarif.manager');
+
+            foreach ($booking->getTickets() as $ticket) {
+                $birthDate = $ticket->getBirthDate();
+                $tarif = $tarifManager->tarifFromAge($birthDate);
+                $ticket->setTarif($tarif);
+                $ticket->setBooking($booking);
+            }
+            $em->persist($booking);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('messsage', 'Commande ajoutée');
+            return $this->redirectToRoute('recap', array('id' => $booking->getId()));
+        }
+        return $this->render('default/info.html.twig', [ 'form' => $form->createView(),
 
         ]);
     }

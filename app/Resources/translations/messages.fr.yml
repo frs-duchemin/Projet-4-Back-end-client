@@ -9,8 +9,18 @@ modal:
   opening: Le musée est ouvert tous les jours sauf le Mardi
   holidays: Le musée est fermé le 1er Mai, 1er Novembre et 25 Décembre
 homepage:
-  title: Bienvenue ! Réservation en ligne
+  title: Billeterie
   begin: Commencez !
+  prices:
+    title: Tarifs
+
+  infos:
+    title: Infos pratiques
+    info1: Ouvre tous les jours sauf le Mardi
+    info2: Fermé le 1er Mai, le 1er Novembre et le 25 Décembre
+  button: Réservez
+
+
 info:
   title1: Votre email
   title2: Choisisse une date de réservation

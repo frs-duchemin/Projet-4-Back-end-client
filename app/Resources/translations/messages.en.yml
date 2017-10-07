@@ -9,8 +9,15 @@ modal:
   opening: The museum is open all days except Tuesday
   holidays: The museum is closed May the 1st, November 1st, December 25th
 homepage:
-  title: Welcome ! Online booking
-  begin: Begin !
+  title: E-ticket
+  prices:
+    title: Prices
+
+  infos:
+    title: Informations
+    info1: Opening every days except Tuesday
+    infos2: Closed May 1st, November 1st and December 25th
+  button: Book
 info:
   title1: Enter email
   title2: Choose a booking date
