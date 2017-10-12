@@ -13,7 +13,7 @@ class DayTicketValidator extends ConstraintValidator
             $formValues = $this->context->getRoot()->getData();
             $visitDate = $formValues->getVisitDate()->format('Y-m-d');
             $time = $now->format('h');
-            if ($now->format('Y-m-d') == $visitDate && $time >= '08') {
+            if ($now->format('Y-m-d') == $visitDate && $time >= '7') {
                 $this->context->buildViolation($constraint->message)
                     ->setParameter('{{ visitDate }}', $visitDate)
                     ->addViolation();

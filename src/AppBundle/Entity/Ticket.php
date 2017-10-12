@@ -29,8 +29,8 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=255)
-     * @Assert\Length(min=3, minMessage="Le nom doit faire au moins {{ limit }} caractères.")
-     * @Assert\Length(max=50, maxMessage="Le nom doit faire un maximum de {{ limit }} caractères.")
+     * @Assert\Length(min=2, minMessage="ticket.name.min")
+     * @Assert\Length(max=50, maxMessage="ticket.firstname.max")
      */
     private $name;
 
@@ -38,8 +38,8 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="firstname", type="string", length=255)
-     * @Assert\Length(min=3, minMessage="Le prénom doit faire au moins {{ limit }} caractères.")
-     * @Assert\Length(max=50, maxMessage="Le prénom doit faire un maximum de {{ limit }} caractères.")
+     * @Assert\Length(min=2, minMessage="ticket.firstname.min")
+     * @Assert\Length(max=50, maxMessage="ticket.firstname.max")
      */
     private $firstname;
 
@@ -54,7 +54,7 @@ class Ticket
     /**
      * @var
      * @ORM\Column(name="country", type="string")
-     * @Assert\Country(message = "Le code pays n'est pas valide.")
+     * @Assert\Country(message = "ticket.country")
      */
     private $country;
 
@@ -66,7 +66,7 @@ class Ticket
     private $ticketType;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tarif", inversedBy="tickets")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tarif", inversedBy="tickets", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="tarif_id", referencedColumnName="id", nullable=false)
      */
 

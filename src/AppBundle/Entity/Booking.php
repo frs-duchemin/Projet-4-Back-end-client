@@ -43,7 +43,7 @@ class Booking
  * @Assert\DateTime()
  * @Assert\GreaterThanOrEqual(
  *      "today",
- *      message = "merci ne pas choisir une date antérieure à celle du jour.."
+ *      message = "booking.date"
  * )
  *
 */
@@ -55,10 +55,6 @@ class Booking
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
-     * @Assert\Email(
-     *     message = "L'email '{{ value }}' n'est pas valide.",
-     *     checkMX = true
-     * )
      */
     private $email;
 
@@ -70,9 +66,16 @@ class Booking
     private $code;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="token", type="string", nullable=true)
+     */
+    private $token;
+
+    /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Ticket", mappedBy="booking", cascade={"persist", "remove"})
      * @Assert\Valid
-     * @LouvreAssert\TicketsNumber
+     * @LouvreAssert\TicketsNumber(message="booking.number")
      */
     private $tickets;
 
@@ -140,6 +143,13 @@ class Booking
         return $this->email;
     }
 
+    /**
+     * @var decimal
+     *
+     * @ORM\Column(type="decimal", precision=7, scale=2, nullable=true)
+     */
+    private $totalMount;
+
 
 
     /**
@@ -174,6 +184,26 @@ class Booking
     }
 
 
+    /**
+     * Set totalMount
+     *
+     * @param integer $totalMount
+     *
+     * @return Booking
+     */
+    public function setTotalMount($totalMount)
+    {
+        $this->totalMount = $totalMount;
+
+        return $this;
+    }
+
+
+    /**
+     * Get totalMount
+     *
+     * @return integer
+     */
     public function getTotalMount()
     {
         $total = 0;
@@ -230,5 +260,29 @@ class Booking
     public function getCode()
     {
         return $this->code;
+    }
+
+    /**
+     * Set token
+     *
+     * @param string $token
+     *
+     * @return Booking
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    /**
+     * Get token
+     *
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
     }
 }

@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraint;
  */
 class TicketsNumber extends Constraint
 {
-    public $message = 'Désolé, il ne reste que {{ RemainingTicketsNumber }}  billet(s) pour le {{ visitDate }}';
+    public $message = 'booking.number';
 
     public function validatedBy()
     {

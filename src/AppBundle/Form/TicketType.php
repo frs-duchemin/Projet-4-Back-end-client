@@ -12,7 +12,6 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Validator\Constraints\DateTime;
-use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Type;
 
 
@@ -22,80 +21,75 @@ class TicketType extends AbstractType
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder
-            ->add('name', TextType::class, [
-                'label' => false,
-                'attr' => [
-                    'placeholder' => 'Nom'
-                ],
-             ])
-            ->add('firstname', TextType::class, [
-                'label' => false,
-                'attr' => [
-                    'placeholder' => 'Prénom'
-                ],
-               ])
-            ->add('country', CountryType::class, [
-                'label' => false,
-                'preferred_choices' => [
-                    'FR'
-                ]
-            ])
-            ->add('reduceTarif', CheckboxType::class, [
-                'label' => 'tarif réduit',
-                'required' => false,
-                'mapped' => false,
-            ])
-            ->add('birthDate', DateType::class, [
-                'format' => 'dd - MM - yyyy',
-                'widget' => 'choice',
-                'years' => range(date('Y'), date('Y') - 130),
-                'attr' => [
-                    'class' => 'dateNaissance',
-                    'placeholder' => 'Date de naissance',
-                    'readonly' => 'readonly'
-
-                ],
-                               'label' => false,
-                'html5' => false
-            ]);
-        if (true) {
+        {
             $builder
-                ->add('ticketType', ChoiceType::class, [
-                    'label' => false,
-                    'placeholder' => 'type de billet',
-                    'choices' => [
-                        'journée' => 'journee',
-                        'demi-journée' => 'demi-journee',
+                ->add('name', TextType::class, [
+                    'label' => 'form.name',
+                    'attr' => [
+                        'placeholder' => 'form.name'
                     ],
-                'expanded' => true,
-                'multiple' => false,
-                'required' => true,
+                ])
 
+                ->add('firstname', TextType::class, [
+                    'label' => 'form.firstname',
+                    'attr' => [
+                    'placeholder' => 'form.firstname'
+                    ],
+                ])
+
+                ->add('country', CountryType::class, [
+                    'label' => 'form.country',
+                    'preferred_choices' => [
+                    'FR'
+                    ]
+                ])
+
+                ->add('reduceTarif', CheckboxType::class, [
+                    'label' => 'form.reduce.price',
+                    'required' => false,
+                    'mapped' => false,
+                ])
+
+                ->add('birthDate', DateType::class, [
+                    'format' => 'dd - MM - yyyy',
+                    'widget' => 'choice',
+                    'years' => range(date('Y'), date('Y') - 130),
+                    'attr' => [
+                        'readonly' => 'readonly'
+                    ],
+                    'label' => 'form.birthdate',
+                    'html5' => false
+                ])
+
+                ->add('ticketType', ChoiceType::class, [
+                    'label' => 'form.choice',
+                    'choices' => [
+                        'form.day' => 'journee',
+                        'form.halfday' => 'demi-journee',
+                    ],
+                    'expanded' => true,
+                    'multiple' => false,
+                    'required' => true,
                 ]);
 
         }
-
-    }
 
     /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Ticket'
-        ));
-    }
+        {
+            $resolver->setDefaults(array(
+                'data_class' => 'AppBundle\Entity\Ticket'
+            ));
+        }
 
     /**
      * {@inheritdoc}
      */
-    public function getBlockPrefix()
-    {
-        return 'appbundle_ticket';
-    }
-
+        public function getBlockPrefix()
+        {
+            return 'ticket';
+        }
 
 }

@@ -17,8 +17,8 @@
                         <img src="http://www.louvre.fr/sites/all/themes/louvre/img/data/logo-louvre.jpg" width="100%">
                     </div>
                     <div class="col-sm-8" style="text-align: center">
-                        <h3>{{ 'modelEmail.titleh3'|trans }}</h3>
-                        <p>{{ 'modelEmail.yourCommand'|trans }}  : #{{ client.id }}</p>
+                        <h3>Votre ticket</h3>
+                        <p>Commande : #{{ booking.id }}</p>
                     </div>
                 </div>
             </div>
@@ -34,41 +34,34 @@
                 <table class="table table-condensed" style="font-size: small">
                     <thead>
                     <tr>
-                        <td>{{ 'form.name'|trans }}</td>
-                        <td>{{ 'form.firstname'|trans }}</td>
-                        <td>{{ 'form.birthdate'|trans }}</td>
-                        <td>{{ 'form.abbReducedPrice'|trans }}</td>
-                        <td>{{ 'form.price'|trans }}</td>
+                        <td>nom</td>
+                        <td>prenom</td>
+                        <td>date naissance</td>
+                        <td>tarif reduit</td>
+                        <td>prix</td>
                     </tr>
                     </thead>
                     <tbody>
-                    {% for ticket in client.Tickets %}
+                    {% for ticket in booking.Tickets %}
                         <tr>
                             <td>{{ ticket.id }}</td>
                             <td>{{ ticket.name }}</td>
                             <td>{{ ticket.firstname }}</td>
-                            <td>{{ ticket.birthday.date|date('d/m/Y') }}</td>
+                            <td>{{ ticket.birthDate|date('d/m/Y') }}</td>
                             <td>
-                                {% if (ticket.tarifReduit) %}
-                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                                {% endif %}
+
                             </td>
-                            <td>{{ ticket.prix|number_format(2, '.', ',') }}€</td>
                         </tr>
                     {% endfor %}
                     </tbody>
                 </table>
 
                 <br />
-                <p>{{ 'text.totalOrder'|trans }} : {{ client.prixTotal|number_format(2, '.', ',') }}€</p>
+                <p>total : {{ booking.totalMount|number_format(2, '.', ',') }}€</p>
             </div>
         </div>
     </div>
-    <p style="text-align: center">{{ 'modelEmail.msgline1'|trans }}</p>
-    <p style="text-align: center">{{ 'modelEmail.msgline2'|trans }}</p>
-    <footer class="well" style="text-align: center">
-        <p>{{ 'title.footer.content'|trans }}</p>
-    </footer>
+
 </div>
 <script src="https://code.jquery.com/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

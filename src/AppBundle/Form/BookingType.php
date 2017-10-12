@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Form\Extension\Core\Type;
 
 
 
@@ -27,7 +28,7 @@ class BookingType extends AbstractType
         $builder->add('visitDate', DateType::class, [
             'html5' => false,
             'widget' => 'single_text',
-            'label' => 'Date de la visite',
+            'label' => 'form.visit.date',
             'format' => 'd/M/yyyy',
             'attr' => [
             ]
@@ -35,21 +36,26 @@ class BookingType extends AbstractType
 
 
         ->add('email', EmailType::class, [
-            'constraints' => [
-                new Email([
-                        'message' => 'Saisissez une adresse email valide'
-                    ]
-                ),
-                new NotBlank([
-                    'message' => 'Saisissez une adresse email',
-                ])
-            ]])
-            ->add('tickets', CollectionType::class, array(
-                'entry_type'   => TicketType::class,
-                'allow_add'    => true,
-                'allow_delete' => true,
-                'by_reference' => false
-            ));
+           'label' => 'form.email'])
+
+            ->add('tickets', CollectionType::class, [
+                'label'         => false,
+                'entry_type'    => TicketType::class,
+                'entry_options' => [
+                    'label' => false,
+                ],
+                'allow_add'     => true,
+                'allow_delete'  => true,
+                'prototype'     => true,
+                'required'      => false,
+                'by_reference'  => true,
+                'delete_empty'  => true,
+                'attr'          => [
+                    // Here is the selector for "hobbies" collection
+                    'class' => 'collection-ticket',
+                ],
+            ])
+            ->add('submit', Type\SubmitType::class);
     }
 
     /**
@@ -67,7 +73,7 @@ class BookingType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_booking';
+        return 'booking';
     }
 
 

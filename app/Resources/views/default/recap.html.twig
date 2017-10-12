@@ -1,60 +1,58 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container">
-    <ul>
-        <li> Code commande: {{ booking.code }}</li>
-        <li> Date: {{ booking.bookingDate | date('d/m/Y') }}</li>
-        <li> Date: {{ booking.visitDate | date('d/m/Y') }}</li>
-    </ul>
+    <div class="container" id="recapitulation">
+        <div class="row"></div>
+            <div class="col-lg-10 mx-auto ">
 
-        <table class="table table-sm table-inverse">
-            <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Type</th>
-                <th>Tarif</th>
-                <th>Prix</th>
-            </tr>
-            </thead>
-            <tbody>
-            {%  for ticket in booking.tickets %}
-            <tr>
-                <th scope="row"></th>
-                <td>{{ ticket.name }}</td>
-                <td>{{ ticket.firstname }}</td>
-                <td>{{ ticket.ticketType }}</td>
-                <td>{{ ticket.tarif.tarifName}}</td>
-                <td>{{ ticket.ticketPrice|number_format(2, ',', ' ') }} €</td>
-                <td colspan="2">Montant</td>
-                <td>Montant Total : {{ booking.totalMount|number_format(2, ',', ' ') }} €</td>
-{% endfor %}
-            </tr>
+                <p style="text-align: center"> {{ 'recap.date'|trans }} {{ booking.visitDate | date('d/m/Y') }}</p>
 
-            </tbody>
-        </table>
 
+                <table class="table">
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Type</th>
+                        <th>Tarif</th>
+                        <th>Prix</th>
+                    </tr>
+                    {%  for ticket in booking.tickets %}
+                        <tr>
+                            <td>{{ ticket.name }}</td>
+                            <td>{{ ticket.firstname }}</td>
+                            <td>{{ ticket.ticketType }}</td>
+                            <td>{{ ticket.tarif.tarifName}}</td>
+                            <td>{{ ticket.ticketPrice|number_format(2, ',', ' ') }} €</td>
+                        </tr>
+                    {%  endfor %}
+                </table>
+        <p style="text-align: end">{{ 'recap.totalMount'|trans }} : {{ booking.totalMount|number_format(2, ',', ' ') }} €</p>
+
+
+
+
+                <form action="{{ path('order_checkout') }}" method="POST" style="text-align: end">
+                    <script
+                            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+
+                            data-key="pk_test_bYIEqYoqsgP2s98uWoF4Vbuu"
+
+                            data-amount={{ booking.totalMount|number_format(2, ',', ' ')*100 }}
+
+                            data-image="http://jiajuanli.eu/wp-content/uploads/2017/04/Louvre-LOGO.png"
+
+                            data-name="Musée du Louvre"
+
+                            data-locale="auto"
+
+                            data-currency="eur">
+
+                    </script>
+                </form>
+    </div>
     </div>
 
-    <form action="" method="POST">
-        <script
-                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
 
-                data-key="pk_test_bYIEqYoqsgP2s98uWoF4Vbuu"
-
-                data-amount={{ booking.totalMount|number_format(2, ',', ' ') }}
-
-                data-name="oc-stripe"
-
-                data-description="Widget"
-
-                data-locale="auto"
-
-                data-currency="eur">
-
-        </script>
-    </form>
 
 
 

@@ -8,5 +8,5 @@ use Symfony\Component\Validator\Constraint;
  */
 class DayTicket extends Constraint
 {
-    public $message = 'Le billet pour "{{ visitDate }}" ne peut-être réservé que après 14h';
+    public $message = 'booking.halfday';
 }

@@ -11,6 +11,10 @@ use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Booking;
 use AppBundle\Form\BookingType;
 use AppBundle\Form\TicketType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Stripe\Charge;
+use Stripe\Error\Card;
+use Stripe\Stripe;
 
 /**
  * Class LouvreController
@@ -50,28 +54,37 @@ class DefaultController extends Controller
             $em->persist($booking);
             $em->flush();
             $request->getSession()->getFlashBag()->add('messsage', 'Commande ajoutée');
+            $this->container->get('app.sessionBooking')->setSessionClient($booking);
+
             return $this->redirectToRoute('recap', array('id' => $booking->getId()));
         }
         return $this->render('default/homepage.html.twig', [ 'tarifs' => $tarifs, 'locale' => $locale,'form' => $form->createView(),
 
         ]);
-
-
-
     }
 
     /**
-     *
-     * @Route("/info", name="info")
+     * @param Request $request
+     * @Route("/order", name="order")
      * @Method({"GET", "POST"})
-     *
+     * @return Response
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Template()
      */
+
     public function orderAction(Request $request)
     {
+
         $booking = new Booking();
+
         $form = $this->get('form.factory')->create(BookingType::class, $booking);
-        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $this->get('session.booking')->setSessionBooking($booking);
+
+
             $booking->setBookingDate(new \DateTime());
             $random = uniqid(rand(), false);
             $booking->setCode($random);
@@ -84,60 +97,92 @@ class DefaultController extends Controller
                 $ticket->setTarif($tarif);
                 $ticket->setBooking($booking);
             }
-            $em->persist($booking);
-            $em->flush();
+
             $request->getSession()->getFlashBag()->add('messsage', 'Commande ajoutée');
-            return $this->redirectToRoute('recap', array('id' => $booking->getId()));
+            $this->get('session.booking')->setSessionBooking($booking);
+            return $this->redirectToRoute('recap');
         }
-        return $this->render('default/info.html.twig', [ 'form' => $form->createView(),
+        return $this->render('default/order.html.twig', [ 'form' => $form->createView(),
 
         ]);
     }
 
     /**
-     *
-     * @Route("/recap/{id}", name="recap")
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @Route("/recap", name="recap")
      * @Method({"GET", "POST"})
      *
      */
-    public function recapAction(Booking $booking)
+    public function recapAction()
     {
-        $tarifs = $this->get('tarif.manager')->listTarifs();
-        $content = $this->get('templating')->render('default/recap.html.twig', ['tarifs' => $tarifs,'booking' => $booking]);
+        $booking = $this->get('session.booking')->getSessionBooking();
+        $this->get('session.booking')->setSessionBooking($booking);
+
+        $content = $this->get('templating')->render('default/recap.html.twig', ['booking' => $booking]);
         return new Response($content);
     }
 
 
 
-    /**
-     * @Route(
-     *     "/checkout",
-     *     name="order_checkout",
-     *     methods="POST"
-     * )
-     */
-    public function checkoutAction()
+        /**
+         * @Route("/checkout", name="order_checkout")
+         * @param Request $request
+         * @return \Symfony\Component\HttpFoundation\RedirectResponse
+         * @Method({"POST"})
+         */
+        public function checkoutAction(Request $request)
     {
-        \Stripe\Stripe::setApiKey("sk_test_s9GCRFp44l4J91chqcR3TxZj");
+        $booking = $this->container->get('session.booking')->getSessionBooking();
 
+        Stripe::setApiKey($this->getParameter('stripe_api_key'));
         // Get the credit card details submitted by the form
-        $token = $_POST['stripeToken'];
+        $token = $request->request->get('stripeToken');
+
 
         // Create a charge: this will charge the user's card
         try {
-            $charge = \Stripe\Charge::create(array(
-                "amount" => 1000, // Amount in cents
+            Charge::create(array(
+                "amount" => $booking->getTotalMount()*100,
+
                 "currency" => "eur",
                 "source" => $token,
-                "description" => "Paiement Stripe - OpenClassrooms Exemple"
+                "description" => "Musée du Louvre"
             ));
-            $this->addFlash("success","Bravo ça marche !");
-            return $this->redirectToRoute("recap");
-        } catch(\Stripe\Error\Card $e) {
-
-            $this->addFlash("error","Snif ça marche pas :(");
-            return $this->redirectToRoute("recap");
+            $this->addFlash("success",'msgFlash.checkOutSucces');
+            $booking->setToken($token);
+            $this->container->get('session.booking')->setSessionBooking($booking);
+            return $this->redirectToRoute('validate', array('id' => $booking->getId()));
+        } catch(Card $e) {
+            $this->addFlash("error",$this->get('translator')->trans('msgFlash.checkOutError'));
+            return $this->redirectToRoute('recap');
             // The card has been declined
         }
     }
+
+    /**
+     * @Route("/validate", name="validate")
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @Method({"GET"})
+     */
+    public function validateAction()
+    {
+
+        {
+            $booking = $this->get('session.booking')->getSessionBooking();
+            $this->get('session.booking')->setSessionBooking($booking);
+            $this->container->get('session.booking')->saveBooking($booking);
+            if ($booking->getToken() || $booking->getTotalMount() == 0) {
+                // Envoie Email
+                $this->container->get('app.sendEmail')->sendEmail($booking);
+            }
+
+            return $this->render('default/validate.html.twig', ['booking' => $booking]);
+        }
+    }
+
+
+
+
+
+
 }

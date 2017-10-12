@@ -1,15 +1,8 @@
-navbar:
-  french: French
-  english: English
-  modal.infos: Praticals informations
-  modal.prices: Prices
-modal:
-  title.infos: Opening days
-  title.prices: Prices
-  opening: The museum is open all days except Tuesday
-  holidays: The museum is closed May the 1st, November 1st, December 25th
+site:
+  title: Louvre - e-ticket
+
 homepage:
-  title: E-ticket
+  title: Museum tickets admission
   prices:
     title: Prices
 
@@ -17,13 +10,39 @@ homepage:
     title: Informations
     info1: Opening every days except Tuesday
     infos2: Closed May 1st, November 1st and December 25th
-  button: Book
+  button: Buy tickets
+
 info:
   title1: Enter email
-  title2: Choose a booking date
+  title2: Choose a date for visit
   title3: Visitors informations
   continue: Continue
-proto:
-  add: Add a ticket
-  delete: Delete this ticket
-  visitor: Ticket
+
+recap:
+  date: Details of your order for the
+  totalMount: Total mount
+  name: Name
+  firstname: Firstname
+  type: Type
+  price: Price
+  tarif: Tarif
+
+order:
+      remove: Supprimer ce billet
+      add: Ajouter un billet
+
+validate:
+    title: Votre commande a bien été enregistrée
+    recap: Vous allez recevoir un e-mail de confirmation
+
+form:
+    visit.date: Visit date
+    email: Email
+    name: Name
+    firstname: Firstname
+    country: Country
+    reduce.price: Reduce price
+    birthdate: Birthdate
+    choice: Ticket choice
+    day: Day
+    half.day: Half-day

@@ -36,9 +36,9 @@ class Tarif
     private $description;
 
     /**
-     * @var string
+     * @var decimal
      *
-     * @ORM\Column(name="price", type="float")
+     * @ORM\Column(name="price")
      */
     private $price;
 

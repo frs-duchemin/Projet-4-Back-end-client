@@ -27,7 +27,7 @@ class SendEmail
     {
         $message = \Swift_Message::newInstance()
             ->setSubject('Réservation de tickets pour le musée du Louvre')
-            ->setFrom(array('emailfrancois@gmail.com' => 'Le Louvre'))
+            ->setFrom(array('projetlouvrep4@gmail.com' => 'Musée du Louvre'))
             ->setTo($booking->getEmail())
             ->setCharset('utf-8')
             ->setContentType('text/html')
