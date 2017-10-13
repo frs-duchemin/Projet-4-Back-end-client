@@ -4,11 +4,11 @@
 
     <div class="container" id="order" style="text-align: center">
         {% form_theme form 'jquery.collection.html.twig' %}
-            {{ form_start(form) }}
-
+            {{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
             <div class="row">
                 <div class="col-md-6 mx-auto">
                     {{ form_widget(form) }}
+
                 </div>
             </div>
         {% endblock %}

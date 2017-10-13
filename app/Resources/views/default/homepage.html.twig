@@ -29,7 +29,7 @@
                             <tbody>
                                 {%  for tarif in tarifs %}
                                     <tr>
-                                        <td>Tarif {{ tarif.tarifName }} {{ tarif.description}}</td>
+                                        <td>Tarif {{ tarif.translate(app.request.locale).getTarifName()}} {{ tarif.translate(app.request.locale).getDescription()}}</td>
                                         <td>{{ tarif.price }} €</td>
                                     </tr>
                                 {%  endfor %}

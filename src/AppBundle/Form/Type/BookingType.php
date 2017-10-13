@@ -36,6 +36,7 @@ class BookingType extends AbstractType
 
 
         ->add('email', EmailType::class, [
+
            'label' => 'form.email'])
 
             ->add('tickets', CollectionType::class, [
