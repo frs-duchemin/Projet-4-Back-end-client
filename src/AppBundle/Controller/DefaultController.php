@@ -10,8 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use AppBundle\Entity\Booking;
-use AppBundle\Form\BookingType;
-use AppBundle\Form\TicketType;
+use AppBundle\Form\Type\BookingType;
 
 
 /**
@@ -22,7 +21,6 @@ use AppBundle\Form\TicketType;
 
 class DefaultController extends Controller
 {
-
     /**
      *
      * @Route("/", name="homepage")
@@ -33,32 +31,9 @@ class DefaultController extends Controller
     {
         $locale = $request->getLocale();
         $tarifs = $this->get('tarif.manager')->listTarifs();
-        $booking = new Booking();
-        $form = $this->get('form.factory')->create(BookingType::class, $booking);
-        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $booking->setBookingDate(new \DateTime());
-            $random = uniqid(rand(), false);
-            $booking->setCode($random);
 
-            $tarifManager = $this->get('tarif.manager');
 
-            foreach ($booking->getTickets() as $ticket) {
-                $birthDate = $ticket->getBirthDate();
-                $tarif = $tarifManager->tarifFromAge($birthDate);
-                $ticket->setTarif($tarif);
-                $ticket->setBooking($booking);
-            }
-            $em->persist($booking);
-            $em->flush();
-            $request->getSession()->getFlashBag()->add('messsage', 'Commande ajoutée');
-            $this->container->get('app.sessionBooking')->setSessionClient($booking);
-
-            return $this->redirectToRoute('recap', array('id' => $booking->getId()));
-        }
-        return $this->render('default/homepage.html.twig', [ 'tarifs' => $tarifs, 'locale' => $locale,'form' => $form->createView(),
-
-        ]);
+        return $this->render('default/homepage.html.twig', [ 'tarifs' => $tarifs, 'locale' => $locale]);
     }
 
     /**
@@ -74,15 +49,12 @@ class DefaultController extends Controller
     {
 
         $booking = new Booking();
-
         $form = $this->get('form.factory')->create(BookingType::class, $booking);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
             $this->get('session.booking')->setSessionBooking($booking);
-
-
             $booking->setBookingDate(new \DateTime());
             $random = uniqid(rand(), false);
             $booking->setCode($random);
