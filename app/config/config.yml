@@ -50,6 +50,7 @@ doctrine:
         user: '%database_user%'
         password: '%database_password%'
         charset: UTF8
+        server_version: 7.0.10
         # if using pdo_sqlite as your database driver:
         #   1. add the path in parameters.yml
         #     e.g. database_path: '%kernel.project_dir%/var/data/data.sqlite'
@@ -68,8 +69,8 @@ swiftmailer:
     spool:     { type: memory }
     transport: smtp
     host:      smtp.mailtrap.io
-    username:  bbd6d7f0c3225e
-    password:  ff2a1fdc3986e1
+    username:  '%username%'
+    password:  '%password%'
     auth_mode: cram-md5
     port: 2525
 

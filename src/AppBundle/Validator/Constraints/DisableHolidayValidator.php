@@ -8,7 +8,6 @@ use Symfony\Component\Validator\ConstraintValidator;
 class DisableHolidayValidator extends ConstraintValidator
 
 {
-
     public function validate($dateTime, Constraint $constraint)
     {
         $holidays = ['01-05-2017', '01-11-2017', '25-12-2017'];
