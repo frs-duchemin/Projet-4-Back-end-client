@@ -28,7 +28,7 @@ class SessionBooking
      */
     public function setSessionBooking(Booking $booking)
     {
-        $this->session->set('booking', $booking);
+        $this->session->set('tmpbooking', $booking);
     }
 
     /**
@@ -36,8 +36,8 @@ class SessionBooking
      */
     public function getSessionBooking()
     {
-        if ($this->session->get('booking')) {
-            $booking = $this->session->get('booking');
+        if ($this->session->get('tmpbooking')) {
+            $booking = $this->session->get('tmpbooking');
         } else {
             return null;
         }
@@ -49,9 +49,14 @@ class SessionBooking
      */
     public function saveBooking(Booking $booking)
     {
+        foreach ($booking->getTickets() as $ticket){
+        $tarif = $this->em->getRepository('AppBundle:Tarif')->find($ticket->getTarif()->getId());
+        $ticket->setTarif($tarif);
+        }
+
         $this->em->persist($booking);
         $this->em->flush();
-        $this->session->remove('booking');
+        $this->session->remove('tmpbooking');
     }
 }
 

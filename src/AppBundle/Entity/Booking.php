@@ -73,7 +73,14 @@ class Booking
     private $token;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Ticket", mappedBy="booking", cascade={"persist", "remove"})
+     * @var decimal
+     *
+     * @ORM\Column(type="decimal", precision=7, scale=2, nullable=true)
+     */
+    private $totalMount;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Ticket", mappedBy="booking", cascade={"persist", "remove"}, fetch="EAGER")
      * @Assert\Valid
      * @LouvreAssert\TicketsNumber(message="booking.number")
      */
@@ -143,12 +150,7 @@ class Booking
         return $this->email;
     }
 
-    /**
-     * @var decimal
-     *
-     * @ORM\Column(type="decimal", precision=7, scale=2, nullable=true)
-     */
-    private $totalMount;
+
 
 
 

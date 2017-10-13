@@ -66,7 +66,7 @@ class Ticket
     private $ticketType;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tarif", inversedBy="tickets", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tarif", inversedBy="tickets")
      * @ORM\JoinColumn(name="tarif_id", referencedColumnName="id", nullable=false)
      */
 
@@ -239,7 +239,7 @@ class Ticket
     public function setTarif(\AppBundle\Entity\Tarif $tarif)
     {
         $this->tarif = $tarif;
-
+        $tarif->addTicket($this);
         return $this;
     }
 

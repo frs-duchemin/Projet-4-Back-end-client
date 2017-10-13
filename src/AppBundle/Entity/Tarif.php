@@ -44,7 +44,7 @@ class Tarif
     private $price;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Ticket", mappedBy="tarif", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Ticket", mappedBy="tarif")
      */
     private $tickets;
 

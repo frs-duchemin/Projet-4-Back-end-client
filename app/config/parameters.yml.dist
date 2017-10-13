@@ -18,4 +18,7 @@ parameters:
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
 
+    stripe_api_key : sk_test_s9GCRFp44l4J91chqcR3TxZj
+    stripe_data_key : pk_test_bYIEqYoqsgP2s98uWoF4Vbuu
+
 
