@@ -10,11 +10,11 @@
 
                 <table class="table">
                     <tr>
-                        <th>Nom</th>
-                        <th>Prénom</th>
-                        <th>Type</th>
-                        <th>Tarif</th>
-                        <th>Prix</th>
+                        <th>{{ 'recap.name'|trans }}</th>
+                        <th>{{ 'recap.firstname'|trans }}</th>
+                        <th>{{ 'recap.type'|trans }}</th>
+                        <th>{{ 'recap.tarif'|trans }}</th>
+                        <th>{{ 'recap.price'|trans }}</th>
                     </tr>
                     {%  for ticket in booking.tickets %}
                         <tr>
@@ -34,17 +34,13 @@
                 <form action="{{ path('order_checkout') }}" method="POST" style="text-align: end">
                     <script
                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-
                             data-key="pk_test_bYIEqYoqsgP2s98uWoF4Vbuu"
-
                             data-amount={{ booking.totalMount|number_format(2, ',', ' ')*100 }}
-
                             data-image="http://jiajuanli.eu/wp-content/uploads/2017/04/Louvre-LOGO.png"
-
+                            data-email="{{ booking.email }}"
                             data-name="Musée du Louvre"
-
-                            data-locale="auto"
-
+                            data-label="{{ 'recap.button'|trans }}"
+                            data-locale="{{ app.request.locale }}"
                             data-currency="eur">
 
                     </script>

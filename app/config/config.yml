@@ -80,3 +80,9 @@ knp_doctrine_behaviors:
     sluggable:      false
     soft_deletable: false
     translatable: true
+
+stof_doctrine_extensions:
+    default_locale: '%locale%'
+    orm:
+        default:
+            translatable:   true

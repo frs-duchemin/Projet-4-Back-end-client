@@ -31,6 +31,8 @@ recap:
   type: Type
   price: Prix
   tarif: Tarif
+  button: Payer par CB
+
 
 validate:
     title: Votre commande a bien été enregistrée
@@ -46,4 +48,10 @@ form:
     birthdate: Date de naissance
     choice: Type de billet
     day: journée
-    half.day: demi-journée
+    halfday: demi-journée
+
+email:
+    title: Votre commande pour le musée du Louvre
+    visitDate: Votre date de visite :
+    code: Votre code de réservation :
+    print: Imprimer

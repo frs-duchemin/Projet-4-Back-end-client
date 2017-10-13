@@ -1,7 +1,9 @@
-{% block ticket_widget %}
+{% block ticket_widget_row %}
 
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-6 mx-auto" style="text-align: center">
+            {{ form_label(form) }}
+            {{ form_errors(form) }}
             {{ form_widget(form) }}
         </div>
         <div class="col-md-2">

@@ -1,52 +1,38 @@
 {% extends 'base.html.twig' %}
 
-
 {% block body %}
 
-    <div class="container" id="order">
+    <div class="container" id="order" style="text-align: center">
         {% form_theme form 'jquery.collection.html.twig' %}
+            {{ form_start(form) }}
 
-        {{ form_start(form) }}
-
-        <div class="row">
-            <div class="col-md-10">
-                {{ form_widget(form) }}
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+                    {{ form_widget(form) }}
+                </div>
             </div>
+        {% endblock %}
 
-        </div>
-        {{ form(form) }}
-    {% endblock %}
+        {% block ticket_widget %}
 
-{% block ticket_widget %}
-    {{ form_widget(form) }}
-    <br/>
-
-
-    {{ form_end(form) }}
-    <hr/>
-
-</div>
+        {{ form_end(form) }}
+    </div>
 
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript">
-
         $('.collection-ticket').collection({ /* same selector as declared in TravelType */
             allow_up: false,
             allow_down: false,
-
-            prefix: 'ticket', /* will use city-add instead of collection-add for add button, etc) */
+            prefix: 'ticket',
+            min: 1,
+            max: 5
         });
-
-
-
     </script>
-
     <script src="{{ asset('build/js/picker.js') }}"></script>
     <script src="{{ asset('js/jquery.collection.js') }}"></script>
-
     <script src="{{ asset('build/js/picker.date.js') }}"></script>
     <script>
         $('#booking_visitDate').pickadate({
@@ -62,12 +48,28 @@
                 [2017,10,1]
 
             ],
+            {% if app.request.locale == 'fr' %}
             monthsFull: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
             weekdaysShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
             today: 'aujourd\'hui',
             clear: 'effacer',
             selectYears: 1
+        {% endif %}
         })
+    </script>
+    <script type="text/javascript">
+        $("#chkbox1").click( function()
+        {
+            if($('#chkbox1').is(':checked'))
+            {
+                $('#lbl1').text("Checked is true!");
+            }
+            else
+            {
+                $('#lbl1').text("Checked is false!");
+            }
+        });
+
     </script>
 
 {% endblock %}

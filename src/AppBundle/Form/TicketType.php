@@ -21,8 +21,8 @@ class TicketType extends AbstractType
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
-        {
-            $builder
+    {
+        $builder
                 ->add('name', TextType::class, [
                     'label' => 'form.name',
                     'attr' => [
@@ -39,9 +39,7 @@ class TicketType extends AbstractType
 
                 ->add('country', CountryType::class, [
                     'label' => 'form.country',
-                    'preferred_choices' => [
-                    'FR'
-                    ]
+                    'preferred_choices' =>'app.request.locale'
                 ])
 
                 ->add('reduceTarif', CheckboxType::class, [
