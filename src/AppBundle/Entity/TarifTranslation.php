@@ -27,13 +27,6 @@ class TarifTranslation
     private $tarifName;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="description", type="string", length=255)
-     */
-    private $description;
-
-    /**
      * Set tarifName
      *
      * @param string $tarifName
@@ -56,6 +49,16 @@ class TarifTranslation
     {
         return $this->tarifName;
     }
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=255)
+     */
+    private $description;
+
+
 
     /**
      * Set description

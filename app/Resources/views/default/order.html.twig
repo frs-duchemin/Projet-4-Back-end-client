@@ -8,15 +8,16 @@
             <div class="row">
                 <div class="col-md-6 mx-auto">
                     {{ form_widget(form) }}
-
                 </div>
-            </div>
-        {% endblock %}
+                <div id="txtAge" style="display:none">Age is something</div>
 
-        {% block ticket_widget %}
+            </div>
+
+
 
         {{ form_end(form) }}
     </div>
+
 
 {% endblock %}
 
@@ -31,6 +32,7 @@
             max: 5
         });
     </script>
+
     <script src="{{ asset('build/js/picker.js') }}"></script>
     <script src="{{ asset('js/jquery.collection.js') }}"></script>
     <script src="{{ asset('build/js/picker.date.js') }}"></script>
@@ -57,20 +59,21 @@
         {% endif %}
         })
     </script>
-    <script type="text/javascript">
-        $("#chkbox1").click( function()
-        {
-            if($('#chkbox1').is(':checked'))
-            {
-                $('#lbl1').text("Checked is true!");
+<script language="JavaScript">
+
+
+        $('#booking_tickets_0_reduceTarif').change(function() {
+            if($(this).is(":checked")) {
+                $("#txtAge").show();
             }
             else
             {
-                $('#lbl1').text("Checked is false!");
+                $("#txtAge").hide();
             }
         });
 
-    </script>
+</script>
+
 
 {% endblock %}
 

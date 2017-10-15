@@ -75,7 +75,6 @@ class DefaultController extends Controller
             $this->get('session.booking')->setSessionBooking($booking);
 
             $request->getSession()->getFlashBag()->add('messsage', 'Commande ajoutée');
-
             return $this->redirectToRoute('recap');
         }
         return $this->render('default/order.html.twig', [ 'form' => $form->createView(),

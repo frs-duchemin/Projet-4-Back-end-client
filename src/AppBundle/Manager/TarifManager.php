@@ -30,14 +30,14 @@ class TarifManager
     {
         $age = $date->diff(new \DateTime())->y;
         if ($age < 4) {
-            $tarif = 'gratuit';
+            $tarif = 5;
         } elseif ($age >= 4 && $age < 12) {
-            $tarif = 'enfant';
+            $tarif = 3;
         } elseif ($age >= 60 ) {
-            $tarif = 'senior';
+            $tarif = 1;
         } else {
-            $tarif = 'normal';
+            $tarif = 2;
         }
-        return $this->em->getRepository('AppBundle:Tarif')->findOneByTarifName($tarif);
+        return $this->em->getRepository('AppBundle:Tarif')->findOneById($tarif);
     }
 }

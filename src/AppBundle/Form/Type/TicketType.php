@@ -39,7 +39,7 @@ class TicketType extends AbstractType
 
                 ->add('country', CountryType::class, [
                     'label' => 'form.country',
-                    'preferred_choices' =>'app.request.locale'
+                    'preferred_choices' =>'app.request.locale',
                 ])
 
                 ->add('reduceTarif', CheckboxType::class, [
@@ -68,6 +68,7 @@ class TicketType extends AbstractType
                     'expanded' => true,
                     'multiple' => false,
                     'required' => true,
+                   
                 ]);
 
         }

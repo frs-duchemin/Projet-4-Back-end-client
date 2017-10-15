@@ -33,8 +33,8 @@ order:
       add: Ajouter un billet
 
 validate:
-    title: Votre commande a bien été enregistrée
-    recap: Vous allez recevoir un e-mail de confirmation
+    title: Your order has been successfully registered
+    info: You will receive a confirmation e-mail
 
 form:
     visit.date: Visit date
@@ -53,4 +53,19 @@ email:
     visitDate: Your visit date :
     code: Your booking code :
     print: Print
+
+error:
+    error.name: An error has occured :
+    error:
+        description: There was an unknown error (HTTP %status_code%) that prevented to complete your request.
+        suggestion: Try loading this page again in some minutes or go back to the homepage.
+    error403:
+        description: You don't have permission to access to this resource.
+        suggestion: Ask your manager or system administrator to grant you access to this resource.
+    error404:
+        description: We couldn't find the page you requested.
+        suggestion: Check out any misspelling in the URL or go back to the homepage.
+    error500:
+        description: There was an internal server error.
+        suggestion: Try loading this page again in some minutes or go back to the homepage.
 

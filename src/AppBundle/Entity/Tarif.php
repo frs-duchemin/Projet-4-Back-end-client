@@ -55,31 +55,8 @@ class Tarif implements ORMBehaviors\Tree\NodeInterface, \ArrayAccess
         return $this->id;
     }
 
-    /**
-     * Set tarifName
-     *
-     * @param string $tarifName
-     *
-     * @return Tarif
-     */
-    public function setTarifName($tarifName)
-    {
-        $this->tarifName = $tarifName;
 
-        return $this;
-    }
-
-    /**
-     * Get tarifName
-     *
-     * @return string
-     */
-    public function getTarifName()
-    {
-        return $this->tarifName;
-    }
-
-    /**
+     /**
      * Set tarifValue
      *
      * @param string $tarifValue

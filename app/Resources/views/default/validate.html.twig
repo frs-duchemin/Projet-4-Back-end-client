@@ -1,26 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-      <!-- About Section -->
-        <div class="container" id="validate" style="text-align: center">
-            <div class="row">
-                <div class="col-lg-6 mx-auto">
-                    <h2> {{ 'validate.title' | trans }} </h2>
+<div class="container" id="order" style="text-align: center">
 
-                </div>
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <h4 class="text-info"> {{ 'validate.title' | trans }}  </h4>
+            <p> {{ 'validate.info' | trans }}</p>
 
-                <div class="row" >
-                    <div class="col-lg-6 mx-auto">
-                        <h2> {{' validate.recap' | trans }} </h2>
-
-                    </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-8 mx-auto text-center">
-                    <a href="{{ path('order') }}" class="btn btn-default btn-lg">{{ 'homepage.button'|trans }}</a>
-                </div>
-            </div>
         </div>
+    </div>
+
+
+</div>
 
 {% endblock %}

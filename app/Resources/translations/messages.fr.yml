@@ -36,7 +36,7 @@ recap:
 
 validate:
     title: Votre commande a bien été enregistrée
-    recap: Vous allez recevoir un e-mail de confirmation
+    info: Vous allez recevoir un e-mail de confirmation
 
 form:
     visit.date: Date de visite
@@ -55,3 +55,18 @@ email:
     visitDate: Votre date de visite :
     code: Votre code de réservation :
     print: Imprimer
+
+error:
+    error.name: Une erreur s'est produite :
+    error:
+        description: Il y a eu une erreur inconnue qui a empêché l'aboutissement de votre requête.
+        suggestion: Essayez de recharger cette page dans quelques minutes ou retournez sur la page principale.
+    error403:
+        description: Vous n'avez pas les droits pour accéder à cette ressource.
+        suggestion: Demandez à votre manager ou à votre administrateur système de vous donner les droits pour accéder à cette ressource.
+    error404:
+        description: Nous n'avons pas pu trouver la page demandée.
+        suggestion: Vérifiez si l'URL ne comporte pas d'erreurs ou retournez sur la page d'accueil.
+    error500:
+        description: Il y a eu une erreur interne du serveur.
+        suggestion: Essayez de recharger cette page dans quelques minutes ou retournez sur la page  d'accueil.
