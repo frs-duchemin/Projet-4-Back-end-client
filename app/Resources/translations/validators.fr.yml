@@ -1,0 +1,15 @@
+booking:
+    date: Vous ne pouvez pas réserver une date antérieure à aujourd'hui
+    number: Désolé, il ne reste que {{ RemainingTicketsNumber }}  billet(s) pour le {{ visitDate }}
+    halfday: Pour le "{{ visitDate}}", vous ne pouvez réserver qu'en demi-journée
+    holiday: Désolé,  le musée est fermé ce jour
+    tuesday: Désolé, le musée est fermé le mardi
+
+ticket:
+    name:
+        min: Votre nom doit contenir au moins 2 caractères
+        max: Votre nom doit contenir au maximum 50 caractères
+    firstname:
+        min: Votre prénom doit contenir au moins 2 caractères
+        max: Votre prénom doit contenir au moins 50 caractères
+    country: Le code pays n'est pas valide

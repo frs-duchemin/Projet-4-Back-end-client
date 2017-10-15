@@ -1,0 +1,56 @@
+site:
+  title: Louvre - e-ticket
+
+homepage:
+  title: Museum tickets admission
+  prices:
+    title: Prices
+
+  infos:
+    title: Informations
+    info1: Opening every days except Tuesday
+    info2: Closed May 1st, November 1st and December 25th
+  button: Buy tickets
+
+info:
+  title1: Enter email
+  title2: Choose a date for visit
+  title3: Visitors informations
+  continue: Continue
+
+recap:
+  date: Details of your order for the
+  totalMount: Total mount
+  name: Name
+  firstname: Firstname
+  type: Type
+  price: Price
+  tarif: Tarif
+  button: Pay with card
+
+order:
+      remove: Supprimer ce billet
+      add: Ajouter un billet
+
+validate:
+    title: Votre commande a bien été enregistrée
+    recap: Vous allez recevoir un e-mail de confirmation
+
+form:
+    visit.date: Visit date
+    email: Email
+    name: Name
+    firstname: Firstname
+    country: Country
+    reduce.price: Reduce price
+    birthdate: Birthdate
+    choice: Ticket choice
+    day: Day
+    halfday: Half-day
+
+email:
+    title: Summary of your order
+    visitDate: Your visit date :
+    code: Your booking code :
+    print: Print
+

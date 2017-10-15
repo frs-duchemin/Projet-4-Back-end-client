@@ -43,3 +43,6 @@
 
 # Backup entities generated with doctrine:generate:entities command
 **/Entity/*~
+
+/app/Resources/views/jquery.collection.html.twig
+/web/build/js/jquery.collection.js

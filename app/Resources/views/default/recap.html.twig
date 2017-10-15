@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container" id="recapitulation">
+        <div class="row"></div>
+            <div class="col-lg-10 mx-auto ">
+
+                <p style="text-align: center"> {{ 'recap.date'|trans }} {{ booking.visitDate | date('d/m/Y') }}</p>
+
+
+                <table class="table">
+                    <tr>
+                        <th>{{ 'recap.name'|trans }}</th>
+                        <th>{{ 'recap.firstname'|trans }}</th>
+                        <th>{{ 'recap.type'|trans }}</th>
+                        <th>{{ 'recap.tarif'|trans }}</th>
+                        <th>{{ 'recap.price'|trans }}</th>
+                    </tr>
+                    {%  for ticket in booking.tickets %}
+                        <tr>
+                            <td>{{ ticket.name }}</td>
+                            <td>{{ ticket.firstname }}</td>
+                            <td>{{ ticket.ticketType }}</td>
+                            <td>{{ ticket.tarif.tarifName}}</td>
+                            <td>{{ ticket.ticketPrice|number_format(2, ',', ' ') }} €</td>
+                        </tr>
+                    {%  endfor %}
+                </table>
+        <p style="text-align: end">{{ 'recap.totalMount'|trans }} : {{ booking.totalMount|number_format(2, ',', ' ') }} €</p>
+
+
+
+
+                <form action="{{ path('order_checkout') }}" method="POST" style="text-align: end">
+                    <script
+                            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                            data-key="pk_test_bYIEqYoqsgP2s98uWoF4Vbuu"
+                            data-amount={{ booking.totalMount|number_format(2, ',', ' ')*100 }}
+                            data-image="http://jiajuanli.eu/wp-content/uploads/2017/04/Louvre-LOGO.png"
+                            data-email="{{ booking.email }}"
+                            data-name="Musée du Louvre"
+                            data-label="{{ 'recap.button'|trans }}"
+                            data-locale="{{ app.request.locale }}"
+                            data-currency="eur">
+
+                    </script>
+                </form>
+    </div>
+    </div>
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,21 @@
+services:
+    tarif.manager:
+        class: AppBundle\Manager\TarifManager
+        arguments: ["@doctrine.orm.entity_manager"]
+
+    validator.constraints.tickets_number:
+        class: AppBundle\Validator\Constraints\TicketsNumberValidator
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: validator.constraint_validator, alias: tickets_number }
+
+    session.booking:
+        class: AppBundle\Manager\SessionBooking
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@session"
+    app.sendEmail:
+            class: AppBundle\Manager\SendEmail
+            arguments:
+                - "@templating"
+                - "@mailer"

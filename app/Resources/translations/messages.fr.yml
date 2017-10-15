@@ -1,0 +1,57 @@
+site:
+  title: Louvre - Billeterie
+
+homepage:
+  title: Billeterie en ligne
+  begin: Réservation
+  prices:
+    title: Tarifs
+
+  infos:
+    title: Infos pratiques
+    info1: Ouvre tous les jours sauf le Mardi
+    info2: Fermé le 1er Mai, le 1er Novembre et le 25 Décembre
+  button: Réservation
+
+  order:
+      remove: Delete this ticket
+      add: Add a ticket
+
+info:
+  title1: Votre email
+  title2: Choisisse une date de réservation
+  title3: Informations sur les visiteurs
+  continue: Continuer
+
+recap:
+  date: Détail de votre commande pour le
+  totalMount: Montant total
+  name: Nom
+  firstname: Prénom
+  type: Type
+  price: Prix
+  tarif: Tarif
+  button: Payer par CB
+
+
+validate:
+    title: Votre commande a bien été enregistrée
+    recap: Vous allez recevoir un e-mail de confirmation
+
+form:
+    visit.date: Date de visite
+    email: Email
+    name: Nom
+    firstname: Prénom
+    country: Pays
+    reduce.price: Tarif réduit
+    birthdate: Date de naissance
+    choice: Type de billet
+    day: journée
+    halfday: demi-journée
+
+email:
+    title: Votre commande pour le musée du Louvre
+    visitDate: Votre date de visite :
+    code: Votre code de réservation :
+    print: Imprimer

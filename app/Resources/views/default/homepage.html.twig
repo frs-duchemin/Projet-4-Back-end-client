@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <header class="masthead">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 mx-auto">
+                        <p class="brand-heading">{{ 'homepage.title'|trans }}</p>
+                        <p>
+                            </p>
+                        <a href="#info" class="btn btn-circle js-scroll-trigger">
+                            <i class="fa fa-angle-double-down animated"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="info" class="content-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mx-auto">
+                    <h2 style="text-align: center">{{ 'homepage.prices.title'|trans }}</h2>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tbody>
+                                {%  for tarif in tarifs %}
+                                    <tr>
+                                        <td>Tarif {{ tarif.tarifName }} {{ tarif.description}}</td>
+                                        <td>{{ tarif.price }} €</td>
+                                    </tr>
+                                {%  endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 mx-auto"   style="text-align: center">
+                    <h2>{{ 'homepage.infos.title'|trans }}</h2>
+                    <h4>{{ 'homepage.infos.info1'|trans }}</h4>
+                    <hr>
+                    <h4>{{ 'homepage.infos.info2'|trans }}</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <a href="{{ path('order') }}" class="btn btn-default btn-lg">{{ 'homepage.button'|trans }}</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <div id="map"></div>
+{% endblock %}
