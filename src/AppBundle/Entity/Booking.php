@@ -75,12 +75,6 @@ class Booking
      */
     private $token;
 
-    /**
-     * @var decimal
-     *
-     * @ORM\Column(type="decimal", precision=7, scale=2, nullable=true)
-     */
-    private $totalMount;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Ticket", mappedBy="booking", cascade={"persist", "remove"}, fetch="EAGER")
