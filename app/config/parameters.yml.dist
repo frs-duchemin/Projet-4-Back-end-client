@@ -16,7 +16,7 @@ parameters:
     mailer_password: ~
 
     # A secret key that's used to generate certain security-related tokens
-    secret: ThisTokenIsNotSoSecretChangeIt
+    secret: 1e5r8t7y9r4e5z7r8f5tr124fr54trf1e
 
     stripe_api_key : sk_test_s9GCRFp44l4J91chqcR3TxZj
     stripe_data_key : pk_test_bYIEqYoqsgP2s98uWoF4Vbuu
