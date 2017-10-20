@@ -4,6 +4,7 @@ booking:
     halfday: For the "{{ visitDate}}", you can only book half-day
     holiday: Sorry, the museum is closed today
     tuesday: Sorry, the museum is closed on Tuesday
+    email: You must enter a valid e-mail
 
 ticket:
     name:

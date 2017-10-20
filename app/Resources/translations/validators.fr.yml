@@ -4,6 +4,7 @@ booking:
     halfday: Pour le "{{ visitDate}}", vous ne pouvez réserver qu'en demi-journée
     holiday: Désolé,  le musée est fermé ce jour
     tuesday: Désolé, le musée est fermé le mardi
+    email: Vous devez entrer une adresse e-mail valide
 
 ticket:
     name:

@@ -46,13 +46,18 @@ form:
     birthdate: Birthdate
     choice: Ticket choice
     day: Day
-    halfday: Half-day
+    halfday: Half-day (Book before 2pm for a visit today)
+    submit: Submit
 
 email:
     title: Summary of your order
+    ticketEntrance: This email serves as a ticket
+    email: Your email
     visitDate: Your visit date :
     code: Your booking code :
     print: Print
+    totalMount: Total mount
+
 
 error:
     error.name: An error has occured :

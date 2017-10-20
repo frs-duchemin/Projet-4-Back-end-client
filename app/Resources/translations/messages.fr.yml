@@ -48,13 +48,18 @@ form:
     birthdate: Date de naissance
     choice: Type de billet
     day: journée
-    halfday: demi-journée
+    halfday: demi-journée (Réserver avant 14H pour une visite aujourd'hui)
+    submit: Valider
+
 
 email:
     title: Votre commande pour le musée du Louvre
+    ticketEntrance: Cet email fait office de ticket d'entrée
+    email: Votre email
     visitDate: Votre date de visite :
     code: Votre code de réservation :
     print: Imprimer
+    totalMount: Montant total
 
 error:
     error.name: Une erreur s'est produite :
