@@ -55,6 +55,9 @@ class Booking
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
+     * @Assert\Email(
+     *     message = "booking.email"
+     * )
      */
     private $email;
 

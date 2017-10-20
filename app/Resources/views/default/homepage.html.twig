@@ -23,13 +23,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 mx-auto">
-                    <h2 style="text-align: center">{{ 'homepage.prices.title'|trans }}</h2>
+                    <h2 class="text-danger" style="text-align: center">{{ 'homepage.prices.title'|trans }}</h2>
                     <div class="table-responsive">
                         <table class="table">
                             <tbody>
                                 {%  for tarif in tarifs %}
                                     <tr>
-                                        <td>Tarif {{ tarif.translate(app.request.locale).getTarifName()}} {{ tarif.translate(app.request.locale).getDescription()}}</td>
+                                        <td>{{ tarif.translate(app.request.locale).getTarifName()}} {{ tarif.translate(app.request.locale).getDescription()}}</td>
                                         <td>{{ tarif.price }} €</td>
                                     </tr>
                                 {%  endfor %}
@@ -39,7 +39,7 @@
                 </div>
 
                 <div class="col-lg-6 mx-auto"   style="text-align: center">
-                    <h2>{{ 'homepage.infos.title'|trans }}</h2>
+                    <h2 class="text-danger">{{ 'homepage.infos.title'|trans }}</h2>
                     <h4>{{ 'homepage.infos.info1'|trans }}</h4>
                     <hr>
                     <h4>{{ 'homepage.infos.info2'|trans }}</h4>

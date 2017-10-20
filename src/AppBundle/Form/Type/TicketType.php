@@ -64,11 +64,13 @@ class TicketType extends AbstractType
                     'choices' => [
                         'form.day' => 'journee',
                         'form.halfday' => 'demi-journee',
+
                     ],
-                    'expanded' => true,
+                    'expanded' => false,
                     'multiple' => false,
                     'required' => true,
-                   
+
+
                 ]);
 
         }

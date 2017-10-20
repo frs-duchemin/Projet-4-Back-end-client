@@ -56,7 +56,9 @@ class BookingType extends AbstractType
                     'class' => 'collection-ticket',
                 ],
             ])
-            ->add('submit', Type\SubmitType::class);
+            ->add('submit', Type\SubmitType::class, [
+
+                'label' => 'form.submit']);
     }
 
     /**

@@ -73,7 +73,7 @@ class DefaultController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
 
             $this->get('session.booking')->setSessionBooking($booking);
-
+//dump($form);die;
             $request->getSession()->getFlashBag()->add('messsage', 'Commande ajoutée');
             return $this->redirectToRoute('recap');
         }
