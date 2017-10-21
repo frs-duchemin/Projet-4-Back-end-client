@@ -25,27 +25,29 @@ class TicketType extends AbstractType
         $builder
                 ->add('name', TextType::class, [
                     'label' => 'form.name',
-                    'attr' => [
-                        'placeholder' => 'form.name'
-                    ],
+
+                    'required' => true,
                 ])
 
                 ->add('firstname', TextType::class, [
                     'label' => 'form.firstname',
-                    'attr' => [
-                    'placeholder' => 'form.firstname'
-                    ],
+
+                    'required' => true,
                 ])
 
                 ->add('country', CountryType::class, [
                     'label' => 'form.country',
                     'preferred_choices' =>'app.request.locale',
+                    'preferred_choices' => array('FR', 'GB', 'DE', 'CN'),
+                    'required' => true,
+                    'placeholder' => 'form.placeholder.country'
                 ])
 
                 ->add('reduceTarif', CheckboxType::class, [
                     'label' => 'form.reduce.price',
                     'required' => false,
                     'mapped' => false,
+
                 ])
 
                 ->add('birthDate', DateType::class, [
@@ -55,8 +57,12 @@ class TicketType extends AbstractType
                     'attr' => [
                         'readonly' => 'readonly'
                     ],
+                    'placeholder' => array(
+                        'year' => 'form.placeholder.year', 'month' => 'form.placeholder.month', 'day' => 'form.placeholder.day',
+                    ),
                     'label' => 'form.birthdate',
-                    'html5' => false
+                    'html5' => false,
+                    'required' => true,
                 ])
 
                 ->add('ticketType', ChoiceType::class, [

@@ -31,13 +31,19 @@ class BookingType extends AbstractType
             'label' => 'form.visit.date',
             'format' => 'd/M/yyyy',
             'attr' => [
+            'placeholder' => 'form.placeholder.date',
             ]
+
         ])
 
 
         ->add('email', EmailType::class, [
 
-           'label' => 'form.email'])
+           'label' => 'form.email',
+            'attr' => [
+                'placeholder' => 'form.placeholder.email'
+            ],
+            ])
 
             ->add('tickets', CollectionType::class, [
                 'label'         => false,
@@ -48,7 +54,6 @@ class BookingType extends AbstractType
                 'allow_add'     => true,
                 'allow_delete'  => true,
                 'prototype'     => true,
-                'required'      => false,
                 'by_reference'  => true,
                 'delete_empty'  => true,
                 'attr'          => [
