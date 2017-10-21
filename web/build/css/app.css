@@ -238,4 +238,9 @@ body {
   padding-top: 150px;
 }
 
+.required:after {
+  content: " *";
+}
+
+
 
