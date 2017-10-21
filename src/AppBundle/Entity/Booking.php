@@ -28,7 +28,7 @@ class Booking
     * @var \DateTime
     *
     * @ORM\Column(name="visit_date", type="datetime")
-    * @Assert\NotBlank()
+    * @Assert\NotBlank(message="booking.visitDate.notblank")
     * @Assert\DateTime()
     * @LouvreAssert\DisableTuesday
     * @LouvreAssert\DisableHoliday
@@ -40,6 +40,7 @@ class Booking
 * @var \DateTime
 *
 * @ORM\Column(name="booking_date", type="datetime")
+ * @Assert\NotBlank()
  * @Assert\DateTime()
  * @Assert\GreaterThanOrEqual(
  *      "today",
