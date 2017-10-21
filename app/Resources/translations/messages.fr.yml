@@ -44,12 +44,20 @@ form:
     name: Nom
     firstname: Prénom
     country: Pays
-    reduce.price: Tarif réduit
+    reduce.price: Tarif réduit (Vous devrez présenter un justificatif)
     birthdate: Date de naissance
     choice: Type de billet
     day: journée
     halfday: demi-journée (Réserver avant 14H pour une visite aujourd'hui)
     submit: Valider
+    placeholder:
+        date: Cliquez pour sélectionner une date
+        email: exemple@adresse.com
+        country: Choisissez un pays...
+        day: Jour
+        month: Mois
+        year: Année
+
 
 
 email:

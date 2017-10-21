@@ -42,12 +42,20 @@ form:
     name: Name
     firstname: Firstname
     country: Country
-    reduce.price: Reduce price
+    reduce.price: Reduce price (You will have to present a proof)
     birthdate: Birthdate
     choice: Ticket choice
     day: Day
     halfday: Half-day (Book before 2pm for a visit today)
     submit: Submit
+    placeholder:
+            date: Click to select a date
+            email: example@adress.com
+            country: Choose a country...
+            day: Day
+            month: Month
+            year: Year
+
 
 email:
     title: Summary of your order
