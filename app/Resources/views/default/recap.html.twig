@@ -5,7 +5,7 @@
         <div class="row"></div>
             <div class="col-lg-10 mx-auto ">
 
-                <p style="text-align: center"> {{ 'recap.date'|trans }} {{ booking.visitDate | date('d/m/Y') }}</p>
+                <p class="text-danger" style="text-align: center"> {{ 'recap.date'|trans }} {{ booking.visitDate | date('d/m/Y') }}</p>
 
 
                 <table class="table">
@@ -13,7 +13,6 @@
                         <th>{{ 'recap.name'|trans }}</th>
                         <th>{{ 'recap.firstname'|trans }}</th>
                         <th>{{ 'recap.type'|trans }}</th>
-                        <th>{{ 'recap.tarif'|trans }}</th>
                         <th>{{ 'recap.price'|trans }}</th>
                     </tr>
                     {%  for ticket in booking.tickets %}
@@ -21,7 +20,6 @@
                             <td>{{ ticket.name }}</td>
                             <td>{{ ticket.firstname }}</td>
                             <td>{{ ticket.ticketType }}</td>
-                            <td>{{ ticket.tarif.tarifName}}</td>
                             <td>{{ ticket.ticketPrice|number_format(2, ',', ' ') }} €</td>
                         </tr>
                     {%  endfor %}

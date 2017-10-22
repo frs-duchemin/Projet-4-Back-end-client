@@ -12,12 +12,6 @@ homepage:
     info2: Closed May 1st, November 1st and December 25th
   button: Buy tickets
 
-info:
-  title1: Enter email
-  title2: Choose a date for visit
-  title3: Visitors informations
-  continue: Continue
-
 recap:
   date: Details of your order for the
   totalMount: Total mount
@@ -29,12 +23,11 @@ recap:
   button: Pay with card
 
 order:
-      remove: Supprimer ce billet
-      add: Ajouter un billet
+    title: Fill in the form for each visitor
 
 validate:
-    title: Votre commande a bien été enregistrée
-    recap: Vous allez recevoir un e-mail de confirmation
+    title: Your order has been successfully registered
+    info: You will receive a confirmation e-mail
 
 form:
     visit.date: Visit date
@@ -42,15 +35,43 @@ form:
     name: Name
     firstname: Firstname
     country: Country
-    reduce.price: Reduce price
+    reduce.price: Reduce price (You will have to present a proof)
     birthdate: Birthdate
     choice: Ticket choice
     day: Day
-    halfday: Half-day
+    halfday: Half-day (Book before 2pm for a visit today)
+    submit: Submit
+    placeholder:
+            date: Click to select a date
+            email: example@adress.com
+            country: Choose a country...
+            day: Day
+            month: Month
+            year: Year
+
 
 email:
     title: Summary of your order
+    ticketEntrance: This email serves as a ticket
+    email: Your email
     visitDate: Your visit date :
     code: Your booking code :
     print: Print
+    totalMount: Total mount
+
+
+error:
+    error.name: An error has occured :
+    error:
+        description: There was an unknown error (HTTP %status_code%) that prevented to complete your request.
+        suggestion: Try loading this page again in some minutes or go back to the homepage.
+    error403:
+        description: You don't have permission to access to this resource.
+        suggestion: Ask your manager or system administrator to grant you access to this resource.
+    error404:
+        description: We couldn't find the page you requested.
+        suggestion: Check out any misspelling in the URL or go back to the homepage.
+    error500:
+        description: There was an internal server error.
+        suggestion: Try loading this page again in some minutes or go back to the homepage.
 

@@ -4,12 +4,20 @@ booking:
     halfday: Pour le "{{ visitDate}}", vous ne pouvez réserver qu'en demi-journée
     holiday: Désolé,  le musée est fermé ce jour
     tuesday: Désolé, le musée est fermé le mardi
+    email: Vous devez entrer une adresse e-mail valide
+    visitDate.notblank: Ce champ ne doit pas être vide
+
+
 
 ticket:
     name:
         min: Votre nom doit contenir au moins 2 caractères
         max: Votre nom doit contenir au maximum 50 caractères
+        notblank: Saisissez un nom
+
     firstname:
         min: Votre prénom doit contenir au moins 2 caractères
         max: Votre prénom doit contenir au moins 50 caractères
+        notblank: Saisissez un prénom
+
     country: Le code pays n'est pas valide

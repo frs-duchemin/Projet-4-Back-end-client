@@ -29,7 +29,7 @@ class DefaultController extends Controller
     /**
      *
      * @Route("/", name="homepage")
-     * @Method({"GET", "POST"})
+     * @Method({"GET"})
      *
      */
     public function homepageAction(Request $request)
@@ -57,25 +57,23 @@ class DefaultController extends Controller
         $booking = new Booking();
         $form = $this->get('form.factory')->create(BookingType::class, $booking);
         $form->handleRequest($request);
-        $booking->setBookingDate(new \DateTime());
-        $random = uniqid(rand(), false);
-        $booking->setCode($random);
 
-        $tarifManager = $this->get('tarif.manager');
-
-        foreach ($booking->getTickets() as $ticket) {
-            $birthDate = $ticket->getBirthDate();
-            $tarif = $tarifManager->tarifFromAge($birthDate);
-            $ticket->setTarif($tarif);
-            $ticket->setBooking($booking);
-        }
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $tarifManager = $this->get('tarif.manager');
+
+            foreach ($booking->getTickets() as $ticket) {
+                $birthDate = $ticket->getBirthDate();
+                $tarif = $tarifManager->tarifFromAge($birthDate);
+                $ticket->setTarif($tarif);
+                $ticket->setBooking($booking);
+            }
+            $booking->setBookingDate(new \DateTime());
+            $random = uniqid(rand(), false);
+            $booking->setCode($random);
 
             $this->get('session.booking')->setSessionBooking($booking);
-
-            $request->getSession()->getFlashBag()->add('messsage', 'Commande ajoutée');
-
+            $request->getSession()->getFlashBag()->add('message', 'Commande ajoutée');
             return $this->redirectToRoute('recap');
         }
         return $this->render('default/order.html.twig', [ 'form' => $form->createView(),
@@ -86,7 +84,7 @@ class DefaultController extends Controller
     /**
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      * @Route("/recap", name="recap")
-     * @Method({"GET", "POST"})
+     * @Method({"GET"})
      *
      */
     public function recapAction()
@@ -94,6 +92,7 @@ class DefaultController extends Controller
 
         $booking = $this->container->get('session.booking')->getSessionBooking();
         $this->get('session.booking')->setSessionBooking($booking);
+
 
 
         return $this->render('default/recap.html.twig', array(

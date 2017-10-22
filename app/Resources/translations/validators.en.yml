@@ -2,15 +2,18 @@ booking:
     date: You can not book a date earlier than today
     number: Sorry, there is only {{ RemainingTicketsNumber }}  remaining for the {{ visitDate }}
     halfday: For the "{{ visitDate}}", you can only book half-day
-    holiday: Sorry, the museum is closed today
+    holiday: Sorry, the museum is closed this day
     tuesday: Sorry, the museum is closed on Tuesday
-
+    email: You must enter a valid e-mail
+    visitDate.notblank: This field souldn't be empty
 ticket:
     name:
         min: Your name must contain at least 2 characters
         max: Your name must contain a maximum of 50 characters
+        notblank: Please enter a name
     firstname:
         min: Your firstname must contain at least 2 characters
         max: Your firstname must contain a maximum of 50 characters
+        notblank: Please enter a firstname
     country: The country code is not valid
 

@@ -75,11 +75,6 @@ swiftmailer:
     port: 2525
 
 knp_doctrine_behaviors:
-    blameable:      false
-    geocodable:     ~     # Here null is converted to false
-    loggable:       ~
-    sluggable:      false
-    soft_deletable: false
     translatable: true
 
 stof_doctrine_extensions:

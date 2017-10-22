@@ -13,15 +13,8 @@ homepage:
     info2: Fermé le 1er Mai, le 1er Novembre et le 25 Décembre
   button: Réservation
 
-  order:
-      remove: Delete this ticket
-      add: Add a ticket
-
-info:
-  title1: Votre email
-  title2: Choisisse une date de réservation
-  title3: Informations sur les visiteurs
-  continue: Continuer
+order:
+    title: Remplissez le formulaire pour chaque visiteur
 
 recap:
   date: Détail de votre commande pour le
@@ -36,7 +29,7 @@ recap:
 
 validate:
     title: Votre commande a bien été enregistrée
-    recap: Vous allez recevoir un e-mail de confirmation
+    info: Vous allez recevoir un e-mail de confirmation
 
 form:
     visit.date: Date de visite
@@ -44,14 +37,42 @@ form:
     name: Nom
     firstname: Prénom
     country: Pays
-    reduce.price: Tarif réduit
+    reduce.price: Tarif réduit (Vous devrez présenter un justificatif)
     birthdate: Date de naissance
     choice: Type de billet
     day: journée
-    halfday: demi-journée
+    halfday: demi-journée (Réserver avant 14H pour une visite aujourd'hui)
+    submit: Valider
+    placeholder:
+        date: Cliquez pour sélectionner une date
+        email: exemple@adresse.com
+        country: Choisissez un pays...
+        day: Jour
+        month: Mois
+        year: Année
+
+
 
 email:
     title: Votre commande pour le musée du Louvre
+    ticketEntrance: Cet email fait office de ticket d'entrée
+    email: Votre email
     visitDate: Votre date de visite :
     code: Votre code de réservation :
     print: Imprimer
+    totalMount: Montant total
+
+error:
+    error.name: Une erreur s'est produite :
+    error:
+        description: Il y a eu une erreur inconnue qui a empêché l'aboutissement de votre requête.
+        suggestion: Essayez de recharger cette page dans quelques minutes ou retournez sur la page principale.
+    error403:
+        description: Vous n'avez pas les droits pour accéder à cette ressource.
+        suggestion: Demandez à votre manager ou à votre administrateur système de vous donner les droits pour accéder à cette ressource.
+    error404:
+        description: Nous n'avons pas pu trouver la page demandée.
+        suggestion: Vérifiez si l'URL ne comporte pas d'erreurs ou retournez sur la page d'accueil.
+    error500:
+        description: Il y a eu une erreur interne du serveur.
+        suggestion: Essayez de recharger cette page dans quelques minutes ou retournez sur la page  d'accueil.

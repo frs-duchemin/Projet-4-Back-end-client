@@ -29,6 +29,7 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=255)
+     * @Assert\NotBlank(message="ticket.name.notblank")
      * @Assert\Length(min=2, minMessage="ticket.name.min")
      * @Assert\Length(max=50, maxMessage="ticket.firstname.max")
      */
@@ -38,6 +39,7 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="firstname", type="string", length=255)
+     * @Assert\NotBlank(message="ticket.name.notblank")
      * @Assert\Length(min=2, minMessage="ticket.firstname.min")
      * @Assert\Length(max=50, maxMessage="ticket.firstname.max")
      */

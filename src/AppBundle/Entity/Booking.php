@@ -28,7 +28,7 @@ class Booking
     * @var \DateTime
     *
     * @ORM\Column(name="visit_date", type="datetime")
-    * @Assert\NotBlank()
+    * @Assert\NotBlank(message="booking.visitDate.notblank")
     * @Assert\DateTime()
     * @LouvreAssert\DisableTuesday
     * @LouvreAssert\DisableHoliday
@@ -55,6 +55,9 @@ class Booking
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
+     * @Assert\Email(
+     *     message = "booking.email"
+     * )
      */
     private $email;
 
@@ -72,12 +75,6 @@ class Booking
      */
     private $token;
 
-    /**
-     * @var decimal
-     *
-     * @ORM\Column(type="decimal", precision=7, scale=2, nullable=true)
-     */
-    private $totalMount;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Ticket", mappedBy="booking", cascade={"persist", "remove"}, fetch="EAGER")

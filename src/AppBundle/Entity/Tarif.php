@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 
 /**
@@ -11,8 +12,16 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="tarif")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TarifRepository")
  */
-class Tarif
+class Tarif implements ORMBehaviors\Tree\NodeInterface, \ArrayAccess
 {
+    use ORMBehaviors\Translatable\Translatable,
+        ORMBehaviors\Tree\Node;
+
+    public function __call($method, $arguments)
+    {
+        return $this->proxyCurrentLocaleTranslation($method, $arguments);
+    }
+
     /**
      * @var int
      *
@@ -22,19 +31,7 @@ class Tarif
      */
     private $id;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="tarif_name", type="string", length=255)
-     */
-    private $tarifName;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="description", type="string", length=255)
-     */
-    private $description;
 
     /**
      * @var decimal
@@ -58,31 +55,8 @@ class Tarif
         return $this->id;
     }
 
-    /**
-     * Set tarifName
-     *
-     * @param string $tarifName
-     *
-     * @return Tarif
-     */
-    public function setTarifName($tarifName)
-    {
-        $this->tarifName = $tarifName;
 
-        return $this;
-    }
-
-    /**
-     * Get tarifName
-     *
-     * @return string
-     */
-    public function getTarifName()
-    {
-        return $this->tarifName;
-    }
-
-    /**
+     /**
      * Set tarifValue
      *
      * @param string $tarifValue
@@ -171,27 +145,5 @@ class Tarif
         return $this->tickets;
     }
 
-    /**
-     * Set description
-     *
-     * @param string $description
-     *
-     * @return Tarif
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
 
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
 }
