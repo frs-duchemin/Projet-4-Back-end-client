@@ -1,15 +1,16 @@
-PHPUnit 4.8.36 by Sebastian Bergmann and contributors.
+PHPUnit 5.7.9 by Sebastian Bergmann and contributors.
 
-[41;37mF[0m
+[31;1mE[0m                                                                   1 / 1 (100%)
 
-Time: 4.78 seconds, Memory: 16.00MB
+Time: 2.1 seconds, Memory: 20.00MB
 
-There was 1 failure:
+There was 1 error:
 
-1) tests\AppBundle\Controller\DefaultControllerTest::testHomepageIsUp
-Failed asserting that 404 matches expected 200.
+1) tests\AppBundle\Controller\DefaultControllerTest::testHalfDay
+InvalidArgumentException: The current node list is empty.
 
-C:\wamp64\www\louvre-ticketing\tests\AppBundle\Controller\DefaultControllerTest.php:25
+C:\wamp64\www\louvre-ticketing\vendor\symfony\symfony\src\Symfony\Component\DomCrawler\Crawler.php:852
+C:\wamp64\www\louvre-ticketing\tests\AppBundle\Controller\DefaultControllerTest.php:23
 
-[37;41mFAILURES![0m
-[37;41mTests: 1[0m[37;41m, Assertions: 1[0m[37;41m, Failures: 1[0m[37;41m.[0m
+[37;41mERRORS![0m
+[37;41mTests: 1[0m[37;41m, Assertions: 0[0m[37;41m, Errors: 1[0m[37;41m.[0m
