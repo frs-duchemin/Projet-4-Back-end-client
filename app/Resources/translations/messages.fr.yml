@@ -13,15 +13,8 @@ homepage:
     info2: Fermé le 1er Mai, le 1er Novembre et le 25 Décembre
   button: Réservation
 
-  order:
-      remove: Delete this ticket
-      add: Add a ticket
-
-info:
-  title1: Votre email
-  title2: Choisisse une date de réservation
-  title3: Informations sur les visiteurs
-  continue: Continuer
+order:
+    title: Remplissez le formulaire pour chaque visiteur
 
 recap:
   date: Détail de votre commande pour le

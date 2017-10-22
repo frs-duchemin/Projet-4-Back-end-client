@@ -12,12 +12,6 @@ homepage:
     info2: Closed May 1st, November 1st and December 25th
   button: Buy tickets
 
-info:
-  title1: Enter email
-  title2: Choose a date for visit
-  title3: Visitors informations
-  continue: Continue
-
 recap:
   date: Details of your order for the
   totalMount: Total mount
@@ -29,8 +23,7 @@ recap:
   button: Pay with card
 
 order:
-      remove: Supprimer ce billet
-      add: Ajouter un billet
+    title: Fill in the form for each visitor
 
 validate:
     title: Your order has been successfully registered

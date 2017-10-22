@@ -8,6 +8,7 @@ booking:
     visitDate.notblank: Ce champ ne doit pas être vide
 
 
+
 ticket:
     name:
         min: Votre nom doit contenir au moins 2 caractères
