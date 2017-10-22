@@ -40,7 +40,6 @@ class Booking
 * @var \DateTime
 *
 * @ORM\Column(name="booking_date", type="datetime")
- * @Assert\NotBlank()
  * @Assert\DateTime()
  * @Assert\GreaterThanOrEqual(
  *      "today",
