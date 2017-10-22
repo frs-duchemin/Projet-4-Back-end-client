@@ -57,20 +57,20 @@ class DefaultController extends Controller
         $booking = new Booking();
         $form = $this->get('form.factory')->create(BookingType::class, $booking);
         $form->handleRequest($request);
-        $booking->setBookingDate(new \DateTime());
-        $random = uniqid(rand(), false);
-        $booking->setCode($random);
 
-        $tarifManager = $this->get('tarif.manager');
-
-        foreach ($booking->getTickets() as $ticket) {
-            $birthDate = $ticket->getBirthDate();
-            $tarif = $tarifManager->tarifFromAge($birthDate);
-            $ticket->setTarif($tarif);
-            $ticket->setBooking($booking);
-        }
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $tarifManager = $this->get('tarif.manager');
+
+            foreach ($booking->getTickets() as $ticket) {
+                $birthDate = $ticket->getBirthDate();
+                $tarif = $tarifManager->tarifFromAge($birthDate);
+                $ticket->setTarif($tarif);
+                $ticket->setBooking($booking);
+            }
+            $booking->setBookingDate(new \DateTime());
+            $random = uniqid(rand(), false);
+            $booking->setCode($random);
 
             $this->get('session.booking')->setSessionBooking($booking);
             $request->getSession()->getFlashBag()->add('message', 'Commande ajoutée');
